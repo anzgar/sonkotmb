@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## EasyiiCMS
 Control panel and tools based on php framework Yii2. Easy cms for easy websites.
 
@@ -27,3 +28,6 @@ vendor/             contains dependent 3rd-party packages
 #### Contacts ####
 
 Feel free to email me on noumohope@gmail.com
+=======
+# sonkotmb
+>>>>>>> b152b5e85d0432234942f2d026f7b58ec6554f52
