@@ -23,7 +23,7 @@ use yii\web\Controller;
  * @property string $controllerID The controller ID (without the module ID prefix). This property is
  * read-only.
  * @property array $searchAttributes Searchable attributes. This property is read-only.
- * @property boolean|\yii\db\TableSchema $tableSchema This property is read-only.
+ * @property bool|\yii\db\TableSchema $tableSchema This property is read-only.
  * @property string $viewPath The controller view path. This property is read-only.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
@@ -37,6 +37,11 @@ class Generator extends \yii\gii\Generator
     public $baseControllerClass = 'yii\web\Controller';
     public $indexWidgetType = 'grid';
     public $searchModelClass = '';
+    /**
+     * @var bool whether to wrap the `GridView` or `ListView` widget with the `yii\widgets\Pjax` widget
+     * @since 2.0.5
+     */
+    public $enablePjax = false;
 
 
     /**
@@ -73,7 +78,7 @@ class Generator extends \yii\gii\Generator
             [['controllerClass', 'searchModelClass'], 'validateNewClass'],
             [['indexWidgetType'], 'in', 'range' => ['grid', 'list']],
             [['modelClass'], 'validateModelClass'],
-            [['enableI18N'], 'boolean'],
+            [['enableI18N', 'enablePjax'], 'boolean'],
             [['messageCategory'], 'validateMessageCategory', 'skipOnEmpty' => false],
             ['viewPath', 'safe'],
         ]);
@@ -91,6 +96,7 @@ class Generator extends \yii\gii\Generator
             'baseControllerClass' => 'Base Controller Class',
             'indexWidgetType' => 'Widget Used in Index Page',
             'searchModelClass' => 'Search Model Class',
+            'enablePjax' => 'Enable Pjax',
         ]);
     }
 
@@ -115,6 +121,9 @@ class Generator extends \yii\gii\Generator
                 You may choose either <code>GridView</code> or <code>ListView</code>',
             'searchModelClass' => 'This is the name of the search model class to be generated. You should provide a fully
                 qualified namespaced class name, e.g., <code>app\models\PostSearch</code>.',
+            'enablePjax' => 'This indicates whether the generator should wrap the <code>GridView</code> or <code>ListView</code>
+                widget on the index page with <code>yii\widgets\Pjax</code> widget. Set this to <code>true</code> if you want to get
+                sorting, filtering and pagination without page refreshing.',
         ]);
     }
 
@@ -196,7 +205,7 @@ class Generator extends \yii\gii\Generator
         if (empty($this->viewPath)) {
             return Yii::getAlias('@app/views/' . $this->getControllerID());
         } else {
-            return Yii::getAlias($this->viewPath);
+            return Yii::getAlias(str_replace('\\', '/', $this->viewPath));
         }
     }
 
@@ -416,7 +425,8 @@ class Generator extends \yii\gii\Generator
                     $hashConditions[] = "'{$column}' => \$this->{$column},";
                     break;
                 default:
-                    $likeConditions[] = "->andFilterWhere(['like', '{$column}', \$this->{$column}])";
+                    $likeKeyword = $this->getClassDbDriverName() === 'pgsql' ? 'ilike' : 'like';
+                    $likeConditions[] = "->andFilterWhere(['{$likeKeyword}', '{$column}', \$this->{$column}])";                    
                     break;
             }
         }
@@ -510,7 +520,7 @@ class Generator extends \yii\gii\Generator
 
     /**
      * Returns table schema for current model class or false if it is not an active record
-     * @return boolean|\yii\db\TableSchema
+     * @return bool|\yii\db\TableSchema
      */
     public function getTableSchema()
     {
@@ -538,5 +548,18 @@ class Generator extends \yii\gii\Generator
 
             return $model->attributes();
         }
+    }
+
+    /**
+     * @return string|null driver name of modelClass db connection.
+     * In case db is not instance of \yii\db\Connection null will be returned.
+     * @since 2.0.6
+     */
+    protected function getClassDbDriverName()
+    {
+        /* @var $class ActiveRecord */
+        $class = $this->modelClass;
+        $db = $class::getDb();
+        return $db instanceof \yii\db\Connection ? $db->driverName : null;
     }
 }

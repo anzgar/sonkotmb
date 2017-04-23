@@ -25,7 +25,10 @@ class QueryBuilder extends \yii\db\QueryBuilder
      */
     public $typeMap = [
         Schema::TYPE_PK => 'NUMBER(10) NOT NULL PRIMARY KEY',
+        Schema::TYPE_UPK => 'NUMBER(10) UNSIGNED NOT NULL PRIMARY KEY',
         Schema::TYPE_BIGPK => 'NUMBER(20) NOT NULL PRIMARY KEY',
+        Schema::TYPE_UBIGPK => 'NUMBER(20) UNSIGNED NOT NULL PRIMARY KEY',
+        Schema::TYPE_CHAR => 'CHAR(1)',
         Schema::TYPE_STRING => 'VARCHAR2(255)',
         Schema::TYPE_TEXT => 'CLOB',
         Schema::TYPE_SMALLINT => 'NUMBER(5)',
@@ -43,6 +46,20 @@ class QueryBuilder extends \yii\db\QueryBuilder
         Schema::TYPE_MONEY => 'NUMBER(19,4)',
     ];
 
+    /**
+     * @inheritdoc
+     */
+    protected $likeEscapeCharacter = '!';
+    /**
+     * `\` is initialized in [[buildLikeCondition()]] method since
+     * we need to choose replacement value based on [[\yii\db\Schema::quoteValue()]].
+     * @inheritdoc
+     */
+    protected $likeEscapingReplacements = [
+        '%' => '!%',
+        '_' => '!_',
+        '!' => '!!',
+    ];
 
     /**
      * @inheritdoc
@@ -175,43 +192,51 @@ EOD;
         }
         $names = [];
         $placeholders = [];
-        foreach ($columns as $name => $value) {
-            $names[] = $schema->quoteColumnName($name);
-            if ($value instanceof Expression) {
-                $placeholders[] = $value->expression;
-                foreach ($value->params as $n => $v) {
-                    $params[$n] = $v;
-                }
-            } else {
-                $phName = self::PARAM_PREFIX . count($params);
-                $placeholders[] = $phName;
-                $params[$phName] = !is_array($value) && isset($columnSchemas[$name]) ? $columnSchemas[$name]->dbTypecast($value) : $value;
-            }
-        }
-        if (empty($names) && $tableSchema !== null) {
-            $columns = !empty($tableSchema->primaryKey) ? $tableSchema->primaryKey : reset($tableSchema->columns)->name;
-            foreach ($columns as $name) {
+        $values = ' DEFAULT VALUES';
+        if ($columns instanceof \yii\db\Query) {
+            list($names, $values, $params) = $this->prepareInsertSelectSubQuery($columns, $schema, $params);
+        } else {
+            foreach ($columns as $name => $value) {
                 $names[] = $schema->quoteColumnName($name);
-                $placeholders[] = 'DEFAULT';
+                if ($value instanceof Expression) {
+                    $placeholders[] = $value->expression;
+                    foreach ($value->params as $n => $v) {
+                        $params[$n] = $v;
+                    }
+                } elseif ($value instanceof \yii\db\Query) {
+                    list($sql, $params) = $this->build($value, $params);
+                    $placeholders[] = "($sql)";
+                } else {
+                    $phName = self::PARAM_PREFIX . count($params);
+                    $placeholders[] = $phName;
+                    $params[$phName] = !is_array($value) && isset($columnSchemas[$name]) ? $columnSchemas[$name]->dbTypecast($value) : $value;
+                }
+            }
+            if (empty($names) && $tableSchema !== null) {
+                $columns = !empty($tableSchema->primaryKey) ? $tableSchema->primaryKey : [reset($tableSchema->columns)->name];
+                foreach ($columns as $name) {
+                    $names[] = $schema->quoteColumnName($name);
+                    $placeholders[] = 'DEFAULT';
+                }
             }
         }
 
         return 'INSERT INTO ' . $schema->quoteTableName($table)
             . (!empty($names) ? ' (' . implode(', ', $names) . ')' : '')
-            . (!empty($placeholders) ? ' VALUES (' . implode(', ', $placeholders) . ')' : ' DEFAULT VALUES');
+            . (!empty($placeholders) ? ' VALUES (' . implode(', ', $placeholders) . ')' : $values);
     }
 
     /**
      * Generates a batch INSERT SQL statement.
      * For example,
      *
-     * ~~~
+     * ```php
      * $sql = $queryBuilder->batchInsert('user', ['name', 'age'], [
      *     ['Tom', 30],
      *     ['Jane', 20],
      *     ['Linda', 25],
      * ]);
-     * ~~~
+     * ```
      *
      * Note that the values in each row must match the corresponding column names.
      *
@@ -222,6 +247,10 @@ EOD;
      */
     public function batchInsert($table, $columns, $rows)
     {
+        if (empty($rows)) {
+            return '';
+        }
+
         $schema = $this->db->getSchema();
         if (($tableSchema = $schema->getTableSchema($table)) !== null) {
             $columnSchemas = $tableSchema->columns;
@@ -247,6 +276,9 @@ EOD;
             }
             $values[] = '(' . implode(', ', $vs) . ')';
         }
+        if (empty($values)) {
+            return '';
+        }
 
         foreach ($columns as $i => $name) {
             $columns[$i] = $schema->quoteColumnName($name);
@@ -256,5 +288,47 @@ EOD;
         . ' (' . implode(', ', $columns) . ') VALUES ';
 
         return 'INSERT ALL ' . $tableAndColumns . implode($tableAndColumns, $values) . ' SELECT 1 FROM SYS.DUAL';
+    }
+
+    /**
+     * @inheritdoc
+     * @since 2.0.8
+     */
+    public function selectExists($rawSql)
+    {
+        return 'SELECT CASE WHEN EXISTS(' . $rawSql . ') THEN 1 ELSE 0 END FROM DUAL';
+    }
+
+    /**
+     * @inheritdoc
+     * @since 2.0.8
+     */
+    public function dropCommentFromColumn($table, $column)
+    {
+        return 'COMMENT ON COLUMN ' . $this->db->quoteTableName($table) . '.' . $this->db->quoteColumnName($column) . " IS ''";
+    }
+
+    /**
+     * @inheritdoc
+     * @since 2.0.8
+     */
+    public function dropCommentFromTable($table)
+    {
+        return 'COMMENT ON TABLE ' . $this->db->quoteTableName($table) . " IS ''";
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function buildLikeCondition($operator, $operands, &$params)
+    {
+        if (!isset($this->likeEscapingReplacements['\\'])) {
+            /*
+             * Different pdo_oci8 versions may or may not implement PDO::quote(), so
+             * yii\db\Schema::quoteValue() may or may not quote \.
+             */
+            $this->likeEscapingReplacements['\\'] = substr($this->db->quoteValue('\\'), 1, -1);
+        }
+        return parent::buildLikeCondition($operator, $operands, $params);
     }
 }

@@ -1,8 +1,39 @@
 Yii Framework 2 bootstrap extension Change Log
 ==============================================
 
-2.0.5 under development
+2.0.7 under development
 -----------------------
+
+- Enh #107: Added `yii\bootstrap\Collapse::$autoCloseItems` to allow keeping multiple items open at the same time (cebe)
+- Enh #131: Added `tabContentOptions` to set HTML attributes for 'tab-content' container in `Tabs` widget (AndrewKorpusov)
+- Bug #157: Active status of multilevel submenu items of the `yii\bootstrap\Nav` class is determined correctly now (PowerGamer1)
+- Enh #64: Added simplified syntax for specifying `Collapse` widget `$items` (Faryshta, cebe)
+- Enh #131 Added `tabContentOptions` to set HTML attributes for 'tab-content' container in `Tabs` widget (AndrewKorpusov)
+- Enh #145: Added the ability to customize the class used to draw dropdowns in `yii\bootstrap\Nav`, `yii\bootstrapButtonDropdown` and `yii\bootstrap\Tab` widgets (PowerGamer1)
+- Enh #187: Added `yii\bootstrap\Tabs::activateFirstVisibleTab()` to set the first visible tab as active if no active tab is set (nilsburg)
+- Bug #126: `yii\bootstrap\ToggleButtonGroup` was unable to work without model (makroxyz)
+- Bug #130: Fixed `yii\bootstrap\Collapse` to use pure numerical value on `content` property (meysampg)
+- Bug #137: Remove `role="navbar"` from `yii\bootstrap\NavBar` according to new aria specification (tino415)
+- Enh #113: Allow URLs instead of content for Tab Widget Dropdown items (Okeanos)
+- Bug #143: Fixed `yii\bootstrap\Nav` to use tags according to bootstrap docs (PowerGamer1)
+- Bug #162: Fixed `yii\bootstrap\Nav` not taking explicit `active` into account when `activateItems` is off (samdark)
+- Enh #174: Added `yii\bootstrap\Tabs::renderPanes()` to allow extending the class to manipulate the content between the tabs and the content (thiagotalma)
+- Bug #196: Remove `role="form"` from `yii\bootstrap\ActiveForm` according to new aria specification (bastardijke)
+
+
+2.0.6 March 17, 2016
+--------------------
+
+- Bug #68: Fixed `yii\bootstrap\Nav` handling empty items (freezy-sk)
+- Bug #81: Fixed `yii\bootstrap\ActiveField::radioList()` and `yii\bootstrap\ActiveField::checkboxList()` ignore `itemOptions` (mikehaertl)
+- Bug #98: Fixed `yii\bootstrap\ButtonDropdown` setting `href` attribute for non `a` tags (13nightevil)
+- Bug #124: Fixed `yii\bootstrap\Tabs` to use `tag` configuration option for item container (arturf)
+- Enh #45: Added support for Bootstrap checkbox/radio toggle buttons (RomeroMsk, klimov-paul)
+- Enh #92: Allow overriding `data-toggle` in `yii\bootstrap\Tabs` (machour)
+
+
+2.0.5 September 23, 2015
+------------------------
 
 - Enh #15: Allowed overriding default Bootstrap CSS classes added by widgets (klimov-paul)
 - Enh #38: Added object support for `content` option in `Collapse` class (pana1990, ItsReddi)

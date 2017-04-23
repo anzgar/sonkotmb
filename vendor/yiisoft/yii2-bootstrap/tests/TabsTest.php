@@ -39,7 +39,13 @@ class TabsTest extends TestCase
                     ]
                 ],
                 [
-                    'label' => $extAnchor = 'External link', 'url' => $extUrl = ['//other/route'],
+                    'label' => $extAnchor1 = 'External link', 'url' => $extUrl1 = ['//other/route'],
+                ],
+                [
+                    'label' => 'Dropdown3',
+                    'items' => [
+                        ['label' => $extAnchor2 = 'External Dropdown Link', 'url' => $extUrl2 = ['//other/dropdown/route']],
+                    ]
                 ],
             ]
         ]);
@@ -63,13 +69,16 @@ class TabsTest extends TestCase
                     "#$page4", // Page4
                     "#$page5", // Page5
 
+                'w3', // Dropdown3
+
             // containers
             "id=\"$page1\"",
             "id=\"$page2\"",
             "id=\"$page3\"",
             "id=\"$page4\"",
             "id=\"$page5\"",
-            Html::a($extAnchor,$extUrl),
+            Html::a($extAnchor1,$extUrl1),
+            Html::a($extAnchor2,$extUrl2, ['tabindex' => -1]),
         ];
 
         foreach ($shouldContain as $string) {
@@ -96,6 +105,8 @@ class TabsTest extends TestCase
                         ['label' => 'Page2', 'content' => 'Page2'],
                         ['label' => 'InvisibleItem', 'content' => 'Invisible Item Content', 'visible' => false],
                         ['label' => 'Page3', 'content' => 'Page3'],
+                        ['label' => 'External Link', 'url' => ['//other/dropdown/route']],
+                        ['label' => 'Invisible External Link', 'url' => ['//other/dropdown/route'], 'visible' => false],
                     ]
                 ],
             ]
@@ -105,5 +116,102 @@ class TabsTest extends TestCase
         $this->assertNotContains('Invisible Page Content', $html);
         $this->assertNotContains('InvisibleItem', $html);
         $this->assertNotContains('Invisible Item Content', $html);
+        $this->assertNotContains('Invisible External Link', $html);
+    }
+
+    public function testItem()
+    {
+        $checkTag = 'article';
+
+        $out = Tabs::widget([
+            'items' => [
+                [
+                    'label' => 'Page1', 'content' => 'Page1',
+                ],
+                [
+                    'label' => 'Page2', 'content' => 'Page2',
+                ],
+            ],
+            'itemOptions' => ['tag' => $checkTag],
+            'renderTabContent' => true,
+        ]);
+
+        $this->assertContains('<' . $checkTag, $out);
+    }
+
+    public function testTabContentOptions()
+    {
+        $checkAttribute = "test_attribute";
+        $checkValue = "check_attribute";
+
+        $out = Tabs::widget([
+            'items' => [
+                [
+                    'label' => 'Page1', 'content' => 'Page1'
+                ]
+            ],
+            'tabContentOptions' => [
+                $checkAttribute => $checkValue
+            ]
+        ]);
+
+        $this->assertContains($checkAttribute . '=', $out);
+        $this->assertContains($checkValue, $out);
+    }
+
+    public function testActivateFirstVisibleTab()
+    {
+        $html = Tabs::widget([
+            'id'=>'mytab',
+            'items' => [
+                [
+                    'label' => 'Tab 1',
+                    'content' => 'some content',
+                    'visible' => false
+                ],
+                [
+                    'label' => 'Tab 2',
+                    'content' => 'some content'                            
+                ],
+                [
+                    'label' => 'Tab 3',
+                    'content' => 'some content'
+                ],
+                [
+                    'label' => 'Tab 4',
+                    'content' => 'some content'
+                ]
+            ]
+        ]);        
+        $this->assertNotContains('<li class="active"><a href="#mytab-tab0" data-toggle="tab">Tab 1</a></li>', $html);
+        $this->assertContains('<li class="active"><a href="#mytab-tab1" data-toggle="tab">Tab 2</a></li>', $html);
+    }
+
+    public function testActivateTab()
+    {
+        $html = Tabs::widget([
+            'id'=>'mytab',
+            'items' => [
+                [
+                    'label' => 'Tab 1',
+                    'content' => 'some content',
+                    'visible'=>false
+                ],
+                [
+                    'label' => 'Tab 2',
+                    'content' => 'some content'
+                ],
+                [
+                    'label' => 'Tab 3',
+                    'content' => 'some content',
+                    'active' => true
+                ],
+                [
+                    'label' => 'Tab 4',
+                    'content' => 'some content'
+                ]
+            ]
+        ]);
+        $this->assertContains('<li class="active"><a href="#mytab-tab2" data-toggle="tab">Tab 3</a></li>', $html);
     }
 }

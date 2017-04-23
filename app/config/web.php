@@ -12,6 +12,11 @@ $config = [
     'language' => 'ru-RU',
     'runtimePath' => $webroot . '/runtime',
     'vendorPath' => $webroot . '/vendor',
+    /*'modules' => [
+        'user' => [
+            'class' => 'dektrium\user\Module',
+        ],
+    ],*/
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -73,4 +78,8 @@ if (YII_ENV_DEV) {
     $config['components']['db']['enableSchemaCache'] = false;
 }
 
-return array_merge_recursive($config, require($webroot . '/vendor/noumo/easyii/config/easyii.php'));
+$config = array_merge_recursive($config,
+    require($webroot . '/vendor/developeruz/easyii-user-module/config/user_module_config.php'),
+    require($webroot . '/vendor/noumo/easyii/config/easyii.php'));
+//$config['components']['user'] = [ 'identityClass' => 'developeruz\easyii_user\models\User' ];
+return $config;

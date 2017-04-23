@@ -67,6 +67,11 @@ class ButtonDropdown extends Widget
      * @var boolean whether the label should be HTML-encoded.
      */
     public $encodeLabel = true;
+    /**
+     * @var string name of a class to use for rendering dropdowns withing this widget. Defaults to [[Dropdown]].
+     * @since 2.0.7
+     */
+    public $dropdownClass = 'yii\bootstrap\Dropdown';
 
 
     /**
@@ -113,7 +118,7 @@ class ButtonDropdown extends Widget
         } else {
             $label .= ' <span class="caret"></span>';
             $options = $this->options;
-            if (!isset($options['href'])) {
+            if (!isset($options['href']) && $this->tagName === 'a') {
                 $options['href'] = '#';
             }
             Html::addCssClass($options, ['toggle' => 'dropdown-toggle']);
@@ -139,7 +144,8 @@ class ButtonDropdown extends Widget
         $config = $this->dropdown;
         $config['clientOptions'] = false;
         $config['view'] = $this->getView();
-
-        return Dropdown::widget($config);
+        /** @var Widget $dropdownClass */
+        $dropdownClass = $this->dropdownClass;
+        return $dropdownClass::widget($config);
     }
 }
