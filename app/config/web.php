@@ -12,11 +12,11 @@ $config = [
     'language' => 'ru-RU',
     'runtimePath' => $webroot . '/runtime',
     'vendorPath' => $webroot . '/vendor',
-    /*'modules' => [
+    'modules' => [
         'user' => [
             'class' => 'dektrium\user\Module',
         ],
-    ],*/
+    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
