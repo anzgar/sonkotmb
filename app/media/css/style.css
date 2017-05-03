@@ -75,7 +75,7 @@
 .module-news-slider .article-intro .intro-text{font-family: 'gothic';color:#858585;text-align:justify;overflow:hidden;height:50px;}
 
 /*Заголовок страницы*/
-.page-header{background:#f3f3f3;}
+.page-header{background:#f3f3f3; margin:0 !important;}
 .module-page-header h1{font-family:'headers';color:#0948ac;font-size:30px;text-align:left;padding:20px 20px;margin:0;}
 
 /*Центральная часть для материалов и правой колонки виджетов*/

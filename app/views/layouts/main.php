@@ -10,21 +10,21 @@ $asset = \app\assets\AppAsset::register($this);
 <head>
     <meta charset="utf-8">
     <title>
-        <?= Html::encode($this->title) ?>
+        СО НКО Тамбовской области
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?= Html::csrfMetaTags() ?>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css?id=<?=md5(microtime())?>">
     <script src="/assets/js/jquery-2.1.4.min.js"></script>
-    <!-- Скрипт слайдера, самописный, можно доработать или взять другой -->
     <script src="/assets/js/responciveSlider.js"></script>
     <script src="/assets/js/button_top.js"></script>
     <?php $this->head() ?>
 </head>
 
 <body>
+    <?php $this->beginBody() ?>
     <!-- Позиция хидера -->
     <div class="template-row header">
         <div class="template-position">
@@ -49,18 +49,18 @@ $asset = \app\assets\AppAsset::register($this);
             <!-- Модуль верхнего меню -->
             <div class="module-top-menu">
                 <ul>
-                    <li class="active"><a href="/">О нас</a></li>
-                    <li><a href="/">Новости</a></li>
-                    <li><a href="/">Календарь мероприятий</a></li>
-                    <li><a href="/">Ресурсные центры</a></li>
-                    <li><a href="/">Медиа</a>
+                    <li><a href="/site/page/23">О нас</a></li>
+                    <li><a href="/site/news/">Новости</a></li>
+                    <li><a href="/site/category/7">Календарь мероприятий</a></li>
+                    <li><a href="/site/page/4">Ресурсные центры</a></li>
+                    <li><a>Медиа</a>
                         <ul>
                             <li><a href="/">Фотографии</a></li>
-                            <li><a href="/">Видео</a></li>
+                            <li><a href="/site/category/8">Видео</a></li>
                         </ul>
                     </li>
-                    <li><a href="/">СМИ об НКО</a></li>
-                    <li><a href="/">Контакты</a></li>
+                    <li><a href="/site/category/29">СМИ об НКО</a></li>
+                    <li><a href="/site/page/24">Контакты</a></li>
                 </ul>
                 <!-- Скрипт располагающий выпадающее меню по центру под пунктом меню -->
                 <script>
@@ -84,10 +84,16 @@ $asset = \app\assets\AppAsset::register($this);
         <div class="template-position">
             <!-- -->
             <div class="module-breadcrumbs">
+                <?php if (isset($this->params['bread'])) { ?>
                 <ul>
                     <li><a href="/">Главная</a></li>
-                    <li class="active"><a href="#">Социальная адаптация инвалидов и их семей</a></li>
+                    <?php
+                    foreach ($this->params['bread'] as $key => $val) {
+                        ?><li><a href="<?=$key?>"><?=$val?></a></li><?php
+                    }
+                    ?>
                 </ul>
+                <?php } ?>
             </div>
 
         </div>
@@ -96,19 +102,15 @@ $asset = \app\assets\AppAsset::register($this);
     <!-- Позиция заголовка страницы -->
     <div class="template-row page-header">
         <div class="template-position">
-            <!-- -->
             <div class="module-page-header">
-                <h1>Социальная адаптация инвалидов и их семей</h1>
+                <h1><?= $this->title ?></h1>
             </div>
-
         </div>
     </div>
 
     <!-- Позиция центральной части где расположены категория блога и правые виджеты -->
     <div class="template-row middle-two-column">
-        <?php $this->beginBody() ?>
         <?= $content ?>
-        <?php $this->endBody() ?>
     </div>
 
     <!-- Позиция футера -->
@@ -174,7 +176,7 @@ $asset = \app\assets\AppAsset::register($this);
             </div>
         </div>
     </div>
-
+    <?php $this->endBody() ?>
 </body>
 
 </html>
