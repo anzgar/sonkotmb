@@ -16,10 +16,10 @@ $asset = \app\assets\AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/assets/css/style.css?id=<?=md5(microtime())?>">
-    <script src="/assets/js/jquery-2.1.4.min.js"></script>
-    <script src="/assets/js/responciveSlider.js"></script>
-    <script src="/assets/js/button_top.js"></script>
+    <link rel="stylesheet" href="/design/css/style.css?id=<?=md5(microtime())?>">
+    <script src="/design/js/jquery-2.1.4.min.js"></script>
+    <script src="/design/js/responciveSlider.js"></script>
+    <script src="/design/js/button_top.js"></script>
     <?php $this->head() ?>
 </head>
 
@@ -31,11 +31,11 @@ $asset = \app\assets\AppAsset::register($this);
             <div class="module-header-background"></div>
             <!-- Модуль логотипа в хидере -->
             <div class="module-header-logo">
-                <a href="/"><img src="/assets/img/top_logo.png"></a>
+                <a href="/"><img src="/design/img/top_logo.png"></a>
             </div>
             <!-- Модуль логина в хидере -->
             <div class="module-header-login">
-                <a href="/" class="header-icon-home"><img src="/assets/img/icon_home.png"></a>
+                <a href="/" class="header-icon-home"><img src="/design/img/icon_home.png"></a>
                 <a href="#">Вход</a>
                 <span>|</span>
                 <a href="#">Регистрация</a>
@@ -89,7 +89,7 @@ $asset = \app\assets\AppAsset::register($this);
                         <li class="slide">
                             <div class="article-intro">
                                 <div class="intro-image">
-                                    <a href="#"><img src="/assets/img/news_slider_none_photo.jpg"></a>
+                                    <a href="#"><img src="/design/img/news_slider_none_photo.jpg"></a>
                                 </div>
                                 <h3><a href="#">Cтарик в бороде</a></h3>
                                 <div class="intro-text">
@@ -102,7 +102,7 @@ $asset = \app\assets\AppAsset::register($this);
                         <li class="slide">
                             <div class="article-intro">
                                 <div class="intro-image">
-                                    <a href="#"><img src="/assets/img/news_slider_none_photo.jpg"></a>
+                                    <a href="#"><img src="/design/img/news_slider_none_photo.jpg"></a>
                                 </div>
                                 <h3><a href="#">Симпатичная леди с Атлантики</a></h3>
                                 <div class="intro-text">
@@ -113,7 +113,7 @@ $asset = \app\assets\AppAsset::register($this);
                         <li class="slide">
                             <div class="article-intro">
                                 <div class="intro-image">
-                                    <a href="#"><img src="/assets/img/news_slider_none_photo.jpg"></a>
+                                    <a href="#"><img src="/design/img/news_slider_none_photo.jpg"></a>
                                 </div>
                                 <h3><a href="#">Старый джентльмен</a></h3>
                                 <div class="intro-text">
@@ -124,7 +124,7 @@ $asset = \app\assets\AppAsset::register($this);
                         <li class="slide">
                             <div class="article-intro">
                                 <div class="intro-image">
-                                    <a href="#"><img src="/assets/img/news_slider_none_photo.jpg"></a>
+                                    <a href="#"><img src="/design/img/news_slider_none_photo.jpg"></a>
                                 </div>
                                 <h3><a href="#">Длинноносый старик</a></h3>
                                 <div class="intro-text">
@@ -165,7 +165,7 @@ $asset = \app\assets\AppAsset::register($this);
                             <p class="subtitle">Народный герой, широко известный персонаж русских народных сказок</p>
 
                             <div class="article-preview">
-                                <img src="/assets/img/news_slider_none_photo.jpg">
+                                <img src="/design/img/news_slider_none_photo.jpg">
                                 <div>
                                     <h3>Интервью с В.В. Тамбовским</h3>
                                     <p> Жил на свете старик в бороде. Говорил он: «Я знал, быть беде. Две совы, три чижа И четыре стрижа Свили гнезда в моей бороде». Жил на свете старик в бороде. Говорил он: «Я знал, быть беде. Две совы, три чижа И четыре
@@ -204,7 +204,7 @@ $asset = \app\assets\AppAsset::register($this);
                 </div>
                 <!-- Модуль какого-то виджета -->
                 <div class="module-right-widget">
-                    <img src="/assets/img/right_widget.png">
+                    <img src="/design/img/right_widget.png">
                 </div>
             </div>
         </div>
@@ -216,14 +216,14 @@ $asset = \app\assets\AppAsset::register($this);
             <!-- Модуль информации -->
             <div class="module-after-middle-content">
                 <div>
-                    <img src="/assets/img/main_after_content_pic.jpg">
+                    <img src="/design/img/main_after_content_pic.jpg">
                     <a href="#test" class="gradient-btn btn2">Предложите идею</a>
                 </div>
                 <div>
                     <h2>Поддержите проект НКО</h2>
                     <h3>Установка памятника тамбовскому волку</h3>
                     <div>
-                        <img src="/assets/img/news_slider_none_photo.jpg">
+                        <img src="/design/img/news_slider_none_photo.jpg">
                         <p class="descriptions">Красивая, опрятная с бантами ученица Опаздывала в школу, летела словно птица На красный свет пошла она Споткнулась и упал Поэтому не надо на дорогах торопиться</p>
                         <p>
                             Красивая, опрятная с бантами ученица Опаздывала в школу, летела словно птица На красный свет пошла она Споткнулась и упал Поэтому не надо на дорогах торопиться Красивая, опрятная с бантами ученица Опаздывала в школу, летела словно птица На красный свет
@@ -241,17 +241,17 @@ $asset = \app\assets\AppAsset::register($this);
             <!-- Модуль префутер -->
             <div class="module-prefooter">
                 <div>
-                    <img src="/assets/img/main_help_icon_1.png">
+                    <img src="/design/img/main_help_icon_1.png">
                     <h3>Социальная адаптация инвалидов и их семей</h3>
                     <div class="read-more-button"><a href="/adaptation.html">Подробнее</a></div>
                 </div>
                 <div>
-                    <img src="/assets/img/main_help_icon_2.png">
+                    <img src="/design/img/main_help_icon_2.png">
                     <h3>Профилактика социального сиротства, поддержка материнства и детства</h3>
                     <div class="read-more-button"><a href="/sirotnet.html">Подробнее</a></div>
                 </div>
                 <div>
-                    <img src="/assets/img/main_help_icon_3.png">
+                    <img src="/design/img/main_help_icon_3.png">
                     <h3>Повышение качества жизни людей пожилого возраста</h3>
                     <div class="read-more-button"><a href="/old.html">Подробнее</a></div>
                 </div>
@@ -267,35 +267,35 @@ $asset = \app\assets\AppAsset::register($this);
                 <div class="slider">
                     <ul class="slide-container">
                         <li class="slide">
-                            <img src="/assets/img/main_footer_abstrakt_logo.png">
+                            <img src="/design/img/partner1.jpg">
                         </li>
                         <li class="slide">
-                            <img src="/assets/img/main_footer_abstrakt_logo_2.png">
+                            <img src="/design/img/partner2.png">
                         </li>
                         <li class="slide">
-                            <img src="/assets/img/main_footer_abstrakt_logo_3.png">
+                            <img src="/design/img/partner3.png">
                         </li>
                         <li class="slide">
-                            <img src="/assets/img/main_footer_abstrakt_logo.png">
+                            <img src="/design/img/partner4.gif">
+                        </li>
+                        <!--<li class="slide">
+                            <img src="/design/img/main_footer_abstrakt_logo_2.png">
                         </li>
                         <li class="slide">
-                            <img src="/assets/img/main_footer_abstrakt_logo_2.png">
+                            <img src="/design/img/main_footer_abstrakt_logo_3.png">
                         </li>
                         <li class="slide">
-                            <img src="/assets/img/main_footer_abstrakt_logo_3.png">
+                            <img src="/design/img/main_footer_abstrakt_logo.png">
                         </li>
                         <li class="slide">
-                            <img src="/assets/img/main_footer_abstrakt_logo.png">
+                            <img src="/design/img/main_footer_abstrakt_logo_2.png">
                         </li>
                         <li class="slide">
-                            <img src="/assets/img/main_footer_abstrakt_logo_2.png">
+                            <img src="/design/img/main_footer_abstrakt_logo_3.png">
                         </li>
                         <li class="slide">
-                            <img src="/assets/img/main_footer_abstrakt_logo_3.png">
-                        </li>
-                        <li class="slide">
-                            <img src="/assets/img/main_footer_abstrakt_logo.png">
-                        </li>
+                            <img src="/design/img/main_footer_abstrakt_logo.png">
+                        </li>-->
                     </ul>
                 </div>
                 <div class="arr_prev"></div>

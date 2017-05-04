@@ -16,10 +16,10 @@ $asset = \app\assets\AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/assets/css/style.css?id=<?=md5(microtime())?>">
-    <script src="/assets/js/jquery-2.1.4.min.js"></script>
-    <script src="/assets/js/responciveSlider.js"></script>
-    <script src="/assets/js/button_top.js"></script>
+    <link rel="stylesheet" href="/design/css/style.css?id=<?=md5(microtime())?>">
+    <script src="/design/js/jquery-2.1.4.min.js"></script>
+    <script src="/design/js/responciveSlider.js"></script>
+    <script src="/design/js/button_top.js"></script>
     <?php $this->head() ?>
 </head>
 
@@ -32,11 +32,11 @@ $asset = \app\assets\AppAsset::register($this);
             <div class="module-header-background"></div>
             <!-- Модуль логотипа в хидере -->
             <div class="module-header-logo">
-                <a href="/"><img src="/assets/img/top_logo.png"></a>
+                <a href="/"><img src="/design/img/top_logo.png"></a>
             </div>
             <!-- Модуль логина в хидере -->
             <div class="module-header-login">
-                <a href="/" class="header-icon-home"><img src="/assets/img/icon_home.png"></a>
+                <a href="/" class="header-icon-home"><img src="/design/img/icon_home.png"></a>
                 <a href="#">Вход</a>
                 <span>|</span>
                 <a href="#">Регистрация</a>
@@ -121,34 +121,34 @@ $asset = \app\assets\AppAsset::register($this);
                 <div class="slider">
                     <ul class="slide-container">
                         <li class="slide">
-                            <img src="/assets/img/main_footer_abstrakt_logo.png">
+                            <img src="/design/img/main_footer_abstrakt_logo.png">
                         </li>
                         <li class="slide">
-                            <img src="/assets/img/main_footer_abstrakt_logo_2.png">
+                            <img src="/design/img/main_footer_abstrakt_logo_2.png">
                         </li>
                         <li class="slide">
-                            <img src="/assets/img/main_footer_abstrakt_logo_3.png">
+                            <img src="/design/img/main_footer_abstrakt_logo_3.png">
                         </li>
                         <li class="slide">
-                            <img src="/assets/img/main_footer_abstrakt_logo.png">
+                            <img src="/design/img/main_footer_abstrakt_logo.png">
                         </li>
                         <li class="slide">
-                            <img src="/assets/img/main_footer_abstrakt_logo_2.png">
+                            <img src="/design/img/main_footer_abstrakt_logo_2.png">
                         </li>
                         <li class="slide">
-                            <img src="/assets/img/main_footer_abstrakt_logo_3.png">
+                            <img src="/design/img/main_footer_abstrakt_logo_3.png">
                         </li>
                         <li class="slide">
-                            <img src="/assets/img/main_footer_abstrakt_logo.png">
+                            <img src="/design/img/main_footer_abstrakt_logo.png">
                         </li>
                         <li class="slide">
-                            <img src="/assets/img/main_footer_abstrakt_logo_2.png">
+                            <img src="/design/img/main_footer_abstrakt_logo_2.png">
                         </li>
                         <li class="slide">
-                            <img src="/assets/img/main_footer_abstrakt_logo_3.png">
+                            <img src="/design/img/main_footer_abstrakt_logo_3.png">
                         </li>
                         <li class="slide">
-                            <img src="/assets/img/main_footer_abstrakt_logo.png">
+                            <img src="/design/img/main_footer_abstrakt_logo.png">
                         </li>
                     </ul>
                 </div>
