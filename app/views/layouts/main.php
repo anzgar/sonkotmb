@@ -110,7 +110,9 @@ $asset = \app\assets\AppAsset::register($this);
 
     <!-- Позиция центральной части где расположены категория блога и правые виджеты -->
     <div class="template-row middle-two-column">
-        <?= $content ?>
+        <div class="template-position">
+            <?= $content ?>
+        </div>
     </div>
 
     <!-- Позиция футера -->
@@ -121,9 +123,18 @@ $asset = \app\assets\AppAsset::register($this);
                 <div class="slider">
                     <ul class="slide-container">
                         <li class="slide">
-                            <img src="/design/img/main_footer_abstrakt_logo.png">
+                            <img src="/design/img/partner1.jpg">
                         </li>
                         <li class="slide">
+                            <img src="/design/img/partner2.png">
+                        </li>
+                        <li class="slide">
+                            <img src="/design/img/partner3.png">
+                        </li>
+                        <li class="slide">
+                            <img src="/design/img/partner4.gif">
+                        </li>
+                        <!--<li class="slide">
                             <img src="/design/img/main_footer_abstrakt_logo_2.png">
                         </li>
                         <li class="slide">
@@ -140,16 +151,7 @@ $asset = \app\assets\AppAsset::register($this);
                         </li>
                         <li class="slide">
                             <img src="/design/img/main_footer_abstrakt_logo.png">
-                        </li>
-                        <li class="slide">
-                            <img src="/design/img/main_footer_abstrakt_logo_2.png">
-                        </li>
-                        <li class="slide">
-                            <img src="/design/img/main_footer_abstrakt_logo_3.png">
-                        </li>
-                        <li class="slide">
-                            <img src="/design/img/main_footer_abstrakt_logo.png">
-                        </li>
+                        </li>-->
                     </ul>
                 </div>
                 <div class="arr_prev"></div>

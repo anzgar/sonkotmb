@@ -1,3 +1,6 @@
+* { box-sizing: initial !important; -webkit-box-sizing: initial !important; }
+label {margin-bottom: 0 !important; font-weight: normal !important; } 
+
 ﻿html,body{width:100%;height:100%;margin:0;padding:0;}
 
 /*Шрифт для текста*/
@@ -71,7 +74,7 @@
 .module-news-slider .article-intro{width:245px;height:315px;margin:10px;}
 .module-news-slider .article-intro .intro-image{height:200px;width:245px;max-height:200px;max-width:245px;}
 .module-news-slider .article-intro h3{margin:15px 0;}
-.module-news-slider .article-intro h3, .module-news-slider .article-intro h3 a{font-family:'gothic';color:#0948ac;font-size:20px;text-align:center;text-decoration:none;}
+.module-news-slider .article-intro h3, .module-news-slider .article-intro h3 a{font-family:'gothic';color:#0948ac;font-size:16px;text-align:center;text-decoration:none;}
 .module-news-slider .article-intro .intro-text{font-family: 'gothic';color:#858585;text-align:justify;overflow:hidden;height:50px;}
 
 /*Заголовок страницы*/
@@ -90,7 +93,7 @@
 .news-blog-category .article-intro{width:245px;height:315px;margin:10px;}
 .news-blog-category .article-intro .intro-image{height:200px;width:245px;max-height:200px;max-width:245px;}
 .news-blog-category .article-intro h3{margin:15px 0;}
-.news-blog-category .article-intro h3, .news-blog-category .article-intro h3 a{font-family:'gothic';color:#0948ac;font-size:18px;text-align:center;text-decoration:none;}
+.news-blog-category .article-intro h3, .news-blog-category .article-intro h3 a{font-family:'gothic';color:#0948ac;font-size:16px;text-align:center;text-decoration:none;}
 .news-blog-category .article-intro .intro-text{font-family: 'gothic';color:#858585;text-align:justify;overflow:hidden;height:50px;}
 
 .newsItem img{position: relative; float: left; margin: 10px 40px 10px 0;}
@@ -142,7 +145,7 @@
 .middle-two-column .right-widgets .module-right-menu{}
 .middle-two-column .right-widgets .module-right-menu>ul{margin:0;padding:0;display:block;text-align:center;list-style:none;}
 .middle-two-column .right-widgets .module-right-menu>ul>li{background:url(../img/right_menu_buttons_bg.png);height:45px;font-family: 'gothic';font-size:14px;color:#0948ac;}
-.middle-two-column .right-widgets .module-right-menu>ul>li>a{display:table-cell;height:45px;width:310px;text-align:center;vertical-align:middle;font-family: 'gothic';font-size:14px;color:#0948ac;text-decoration:none;border-top:2px solid #e6e6e6;}
+.middle-two-column .right-widgets .module-right-menu>ul>li>a{display:table-cell;height:45px;width:310px;text-align:center;vertical-align:middle;font-family: 'gothic';font-size:16px;color:#0948ac;text-decoration:none;border-top:2px solid #e6e6e6;}
 .middle-two-column .right-widgets .module-right-menu>ul>li>a:hover{font-family: 'gothicBold';border-top:2px solid #bbd800;}
 /*Модуль абстрактного виджета*/
 .module-right-widget{text-align:center;padding:10px 0;}

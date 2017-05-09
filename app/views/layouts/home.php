@@ -24,6 +24,7 @@ $asset = \app\assets\AppAsset::register($this);
 </head>
 
 <body>
+    <?php $this->beginBody() ?>
     <!-- Позиция хидера -->
     <div class="template-row header">
         <div class="template-position">
@@ -79,161 +80,8 @@ $asset = \app\assets\AppAsset::register($this);
 
         </div>
     </div>
-    <!-- Позиция новостного слайдера -->
-    <div class="template-row news-slider">
-        <div class="template-position">
-            <!-- Модуль новостного слайдера -->
-            <div class="module-news-slider">
-                <div class="slider">
-                    <ul class="slide-container">
-                        <li class="slide">
-                            <div class="article-intro">
-                                <div class="intro-image">
-                                    <a href="#"><img src="/design/img/news_slider_none_photo.jpg"></a>
-                                </div>
-                                <h3><a href="#">Cтарик в бороде</a></h3>
-                                <div class="intro-text">
-
-                                        Жил на свете старик в бороде. Говорил он: «Я знал, быть беде. Две совы, три чижа И четыре стрижа Свили гнезда в моей бороде».
-
-                                </div>
-                            </div>
-                        </li>
-                        <li class="slide">
-                            <div class="article-intro">
-                                <div class="intro-image">
-                                    <a href="#"><img src="/design/img/news_slider_none_photo.jpg"></a>
-                                </div>
-                                <h3><a href="#">Симпатичная леди с Атлантики</a></h3>
-                                <div class="intro-text">
-                                    Симпатичная леди с Атлантики, Завязавши ботинки на бантики, Знай гуляла по пристани Со щенками пятнистыми И порочила климат Атлантики.
-                                </div>
-                            </div>
-                        </li>
-                        <li class="slide">
-                            <div class="article-intro">
-                                <div class="intro-image">
-                                    <a href="#"><img src="/design/img/news_slider_none_photo.jpg"></a>
-                                </div>
-                                <h3><a href="#">Старый джентльмен</a></h3>
-                                <div class="intro-text">
-                                    Старый джентльмен на склоне холма Был подвижен и прыток весьма: Он, не знаясь со знатью, Бегал в тещином платье От подножья к вершине холма.
-                                </div>
-                            </div>
-                        </li>
-                        <li class="slide">
-                            <div class="article-intro">
-                                <div class="intro-image">
-                                    <a href="#"><img src="/design/img/news_slider_none_photo.jpg"></a>
-                                </div>
-                                <h3><a href="#">Длинноносый старик</a></h3>
-                                <div class="intro-text">
-                                    Длинноносый старик из Литвы Говорил: «Если скажете вы, Что мой нос длинноват, В чем же я виноват – Ведь не я так считаю, а вы!»
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="arr_prev"></div>
-                <div class="arr_next"></div>
-              	<div class="read-more-button"><a href="/site/news/">Все новости</a></div>
-            </div>
-            <!-- Скрипт запускающий слайдер -->
-            <script>
-                jQuery(window).load(function() {
-                    realResponsiveSlider({
-                        slider: jQuery('.module-news-slider>.slider'),
-                        fixWidth: true
-                    });
-                });
-            </script>
-        </div>
-    </div>
-
-    <!-- Позиция центральной части где расположены материал и правые виджеты -->
-    <div class="template-row middle-two-column">
-        <div class="template-position">
-            <!-- Материал -->
-            <div class="article">
-                <div class="tabs-container">
-                    <input type="radio" name="tab" checked="checked" id="tab-1" /><label for="tab-1">Интервью</label>
-                    <input type="radio" name="tab" id="tab-2" /><label for="tab-2">Объявления</label>
-                    <input type="radio" name="tab" id="tab-3" /><label for="tab-3">Форум</label>
-                    <div>
-                        <div class="interview-container">
-                            <h2><a href="#">Волк Волкович Тамбовский</a></h2>
-                            <p class="subtitle">Народный герой, широко известный персонаж русских народных сказок</p>
-
-                            <div class="article-preview">
-                                <img src="/design/img/news_slider_none_photo.jpg">
-                                <div>
-                                    <h3>Интервью с В.В. Тамбовским</h3>
-                                    <p> Жил на свете старик в бороде. Говорил он: «Я знал, быть беде. Две совы, три чижа И четыре стрижа Свили гнезда в моей бороде». Жил на свете старик в бороде. Говорил он: «Я знал, быть беде. Две совы, три чижа И четыре
-                                        стрижа Свили гнезда в моей бороде». Жил на свете старик в бороде. Говорил он: «Я знал, быть беде. Две совы, три чижа И четыре стрижа Свили гнезда в моей бороде». Жил на свете старик в бороде. Говорил он: «Я знал,
-                                        быть беде. Две совы, три чижа И четыре стрижа Свили гнезда в моей бороде». Жил на свете старик в бороде. Говорил он: «Я знал, быть беде. Две совы, три чижа И четыре стрижа Свили гнезда в моей бороде».</p>
-                                    <div class="read-more-button"><a href="#">Подробнее</a></div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        II. В этом положении следует выжидать курдля. Когда зверь приблизится, нужно, сохраняя спокойствие, схватить обеими руками бомбу, которую держат между колен. Голодный курдль обычно глотает сразу. Если курдль не желает брать, для поощрения можно слегка
-                        похлопать его по языку. В случае, если угрожает осечка, некоторые советуют посолиться еще раз, но это рискованный шаг, поскольку курдль может чихнуть. Мало какой охотник пережил чихание курдля.
-                    </div>
-                    <div>
-                        III. Взяв приманку, курдль облизывается и уходит. По проглатывании охотник незамедлительно приступает к активной стадии, то есть при помощи метелки стряхивает с себя лук и приправы, чтобы паста могла свободно проявить свое прочищающее действие; затем
-                        настраивает часовой механизм и удаляется возможно быстрее в сторону, противоположную той, откуда прибыл.
-                    </div>
-                </div>
-                <a href="#test" class="gradient-btn btn1">Регистрация НКО на мероприятие</a>
-            </div>
-            <!-- Правые виджеты -->
-            <div class="right-widgets">
-                <!-- Модуль правого меню -->
-                <div class="module-right-menu">
-                    <ul>
-                        <li><a href="#">Поэтапный доступ НКО к бюджетным средствам</a></li>
-                        <li><a href="/site/category/6">Конкурсы НКО</a></li>
-                        <li><a href="/site/category/9">Фестиваль "Добрый Тамбов"</a></li>
-                        <li><a href="#">Лучшие практики</a></li>
-                        <li><a href="#">Отчёты НКО</a></li>
-                        <li><a href="/site/page/3">Библиотека НКО</a></li>
-                        <li><a href="/site/page/2">Правовая база</a></li>
-                    </ul>
-                </div>
-                <!-- Модуль какого-то виджета -->
-                <div class="module-right-widget">
-                    <img src="/design/img/right_widget.png">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Позиция после материала -->
-    <div class="template-row after-middle">
-        <div class="template-position">
-            <!-- Модуль информации -->
-            <div class="module-after-middle-content">
-                <div>
-                    <img src="/design/img/main_after_content_pic.jpg">
-                    <a href="#test" class="gradient-btn btn2">Предложите идею</a>
-                </div>
-                <div>
-                    <h2>Поддержите проект НКО</h2>
-                    <h3>Установка памятника тамбовскому волку</h3>
-                    <div>
-                        <img src="/design/img/news_slider_none_photo.jpg">
-                        <p class="descriptions">Красивая, опрятная с бантами ученица Опаздывала в школу, летела словно птица На красный свет пошла она Споткнулась и упал Поэтому не надо на дорогах торопиться</p>
-                        <p>
-                            Красивая, опрятная с бантами ученица Опаздывала в школу, летела словно птица На красный свет пошла она Споткнулась и упал Поэтому не надо на дорогах торопиться Красивая, опрятная с бантами ученица Опаздывала в школу, летела словно птица На красный свет
-                            пошла она Споткнулась и упал Поэтому не надо на дорогах торопиться
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
+    <?= $content ?>
 
     <!-- Позиция префутера -->
     <div class="template-row pre-footer">
@@ -322,7 +170,8 @@ $asset = \app\assets\AppAsset::register($this);
             </div>
         </div>
     </div>
-
+    <?php $this->endBody() ?>
 </body>
 
 </html>
+<?php $this->endPage() ?>

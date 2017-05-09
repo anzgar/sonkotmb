@@ -3,41 +3,122 @@ use yii\helpers\Url;
 
 $this->title = 'EasyiiCMS start page';
 ?>
-<div class="template-position">
-            <!-- Материал без виджетов -->
-            <table class="soc-adaptation">
-                <tbody><tr>
-                    <td></td>
-                    <td><img src="/assets/img/without_widgets_icon_2.png"></td>
-                    <td>
-                        <h3><a href="#">Новости</a></h3></td>
-                </tr>
-                <tr>
-                    <td><img src="/assets/img/without_widgets_icon_1.png">
-                        <h3><a href="#">Оказать благотворительную помощь</a></h3></td>
-                    <td><img src="/assets/img/without_widgets_icon_3.png"></td>
-                    <td>
-                        <h3><a href="#">Лучшие практики</a></h3></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><img src="/assets/img/without_widgets_icon_4.png"></td>
-                    <td>
-                        <h3><a href="#">Методические рекомендации</a></h3></td>
-                </tr>
-            </tbody></table>
+<!-- Позиция новостного слайдера -->
+<div class="template-row news-slider">
+    <div class="template-position">
+        <!-- Модуль новостного слайдера -->
+        <div class="module-news-slider">
+            <div class="slider">
+                <ul class="slide-container">
+                    <?php
+                        foreach ($news as $item) {
+                            ?>
+                            <li class="slide">
+                                <div class="article-intro">
+                                    <div class="intro-image">
+                                        <a href="/site/news/<?=$item->id?>"><img src="<?=$item->thumb('245', '200', 1)?>"></a>
+                                    </div>
+                                    <h3><a href="/site/news/<?=$item->id?>"><?=$item->title?></a></h3>
+                                    <!--<div class="intro-text">
 
-            <style>
-                .soc-adaptation {
-                    width: 90%;
-                }
+                                            <?php //echo $item->short ?>
 
-                .soc-adaptation td {
-                    text-align: center;
-                    font-family: 'headers';
-                    color: #0948ac;
-                    font-size: 20px;
-                }
-            </style>
-
+                                    </div>-->
+                                </div>
+                            </li>
+                            <?php
+                        }
+                    ?>
+                </ul>
+            </div>
+            <div class="arr_prev"></div>
+            <div class="arr_next"></div>
+            <div class="read-more-button"><a href="/site/news/">Все новости</a></div>
         </div>
+        <!-- Скрипт запускающий слайдер -->
+        <script>
+            jQuery(window).load(function() {
+                realResponsiveSlider({
+                    slider: jQuery('.module-news-slider>.slider'),
+                    fixWidth: true
+                });
+            });
+        </script>
+    </div>
+</div>
+
+<!-- Позиция центральной части где расположены материал и правые виджеты -->
+<div class="template-row middle-two-column">
+    <div class="template-position">
+        <!-- Материал -->
+        <div class="article">
+            <div class="tabs-container">
+                <input type="radio" name="tab" checked="checked" id="tab-1" /><label for="tab-1">Интервью</label>
+                <input type="radio" name="tab" id="tab-2" /><label for="tab-2">Объявления</label>
+                <input type="radio" name="tab" id="tab-3" /><label for="tab-3">Форум</label>
+                <div>
+                    <div class="interview-container">
+                        <h2><a href="#">Волк Волкович Тамбовский</a></h2>
+                        <!--<p class="subtitle">Народный герой, широко известный персонаж русских народных сказок</p>-->
+
+                        <div class="article-preview">
+                            <img src="/design/img/news_slider_none_photo.jpg">
+                            <div>
+                                <h3>Интервью с В.В. Тамбовским</h3>
+                                <p> Жил на свете старик в бороде. Говорил он: «Я знал, быть беде. Две совы, три чижа И четыре стрижа Свили гнезда в моей бороде». Жил на свете старик в бороде. Говорил он: «Я знал, быть беде. Две совы, три чижа И четыре
+                                    стрижа Свили гнезда в моей бороде». Жил на свете старик в бороде. Говорил он: «Я знал, быть беде. Две совы, три чижа И четыре стрижа Свили гнезда в моей бороде». Жил на свете старик в бороде. Говорил он: «Я знал,
+                                    быть беде. Две совы, три чижа И четыре стрижа Свили гнезда в моей бороде». Жил на свете старик в бороде. Говорил он: «Я знал, быть беде. Две совы, три чижа И четыре стрижа Свили гнезда в моей бороде».</p>
+                                <div class="read-more-button"><a href="#">Подробнее</a></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    II. В этом положении следует выжидать курдля. Когда зверь приблизится, нужно, сохраняя спокойствие, схватить обеими руками бомбу, которую держат между колен. Голодный курдль обычно глотает сразу. Если курдль не желает брать, для поощрения можно слегка
+                    похлопать его по языку. В случае, если угрожает осечка, некоторые советуют посолиться еще раз, но это рискованный шаг, поскольку курдль может чихнуть. Мало какой охотник пережил чихание курдля.
+                </div>
+                <div>
+                    III. Взяв приманку, курдль облизывается и уходит. По проглатывании охотник незамедлительно приступает к активной стадии, то есть при помощи метелки стряхивает с себя лук и приправы, чтобы паста могла свободно проявить свое прочищающее действие; затем
+                    настраивает часовой механизм и удаляется возможно быстрее в сторону, противоположную той, откуда прибыл.
+                </div>
+            </div>
+            <a href="#test" class="gradient-btn btn1">Регистрация НКО на мероприятие</a>
+        </div>
+        <!-- Правые виджеты -->
+        <div class="right-widgets">
+            <!-- Модуль правого меню -->
+            <?= $this->render('rightmenu') ?>
+            <!-- Модуль какого-то виджета -->
+            <div class="module-right-widget">
+                <img src="/design/img/right_widget.png">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Позиция после материала -->
+<div class="template-row after-middle">
+    <div class="template-position">
+        <!-- Модуль информации -->
+        <div class="module-after-middle-content">
+            <div>
+                <img src="/design/img/main_after_content_pic.jpg">
+                <a href="#test" class="gradient-btn btn2">Предложите идею</a>
+            </div>
+            <div>
+                <h2>Поддержите проект НКО</h2>
+                <!--<h3>Установка памятника тамбовскому волку</h3>
+                <div>
+                    <img src="/design/img/news_slider_none_photo.jpg">
+                    <p class="descriptions">Красивая, опрятная с бантами ученица Опаздывала в школу, летела словно птица На красный свет пошла она Споткнулась и упал Поэтому не надо на дорогах торопиться</p>
+                    <p>
+                        Красивая, опрятная с бантами ученица Опаздывала в школу, летела словно птица На красный свет пошла она Споткнулась и упал Поэтому не надо на дорогах торопиться Красивая, опрятная с бантами ученица Опаздывала в школу, летела словно птица На красный свет
+                        пошла она Споткнулась и упал Поэтому не надо на дорогах торопиться
+                    </p>
+                </div>-->
+                <?=$support->text?>
+            </div>
+        </div>
+    </div>
+</div>

@@ -22,7 +22,15 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $this->layout = 'home';
-        return $this->render('index');
+        
+        $news = News::items([
+            'pagination' => ['pageSize' => 5, 'page' => 1]
+        ]);
+        
+        return $this->render('index', [
+            'news' => $news,
+            'support' => Page::get(5)
+        ]);
     }
     
     public function actionNews()
@@ -40,15 +48,16 @@ class SiteController extends Controller
             ]);
         }
         
-        $page = \Yii::$app->request->get('p') ?
-                \Yii::$app->request->get('p') : 0;
+        $page = \Yii::$app->request->get('page') ?
+                \Yii::$app->request->get('page') : 0;
         
         $news = News::items([
-            'pagination' => ['pageSize' => 5, 'page' => $page]
+            'pagination' => ['pageSize' => 5, 'page' => $page - 1]
         ]);
-
+        
         return $this->render('news', [
-            'news' => $news
+            'news' => $news,
+            'pages' => News::pages()
         ]);
     }
     
@@ -57,22 +66,45 @@ class SiteController extends Controller
         if (!\Yii::$app->request->get('id') || !$category = Article::cat(\Yii::$app->request->get('id'))) {
             return false;
         }
-//        die(print_r(Category::generateTree()));
         
         $this->view->params['bread'] = [];
         $this->view->params['bread']['/site/category/'.$category->id] = $category->title;
         
         $this->view->title = $category->title;
         
-        $page = \Yii::$app->request->get('p') ?
-                \Yii::$app->request->get('p') : 0;
+        $page = \Yii::$app->request->get('page') ?
+                \Yii::$app->request->get('page') : 0;
         
         $items = Article::items([
-            'pagination' => ['pageSize' => 5, 'page' => $page]
+            'where' => ['category_id' => \Yii::$app->request->get('id')],
+            'pagination' => ['pageSize' => 5, 'page' => $page - 1]
         ]);
 
         return $this->render('сategory', [
-            'articles' => $items
+            'articles' => $items,
+            'pages' => Article::pages()
+        ]);
+    }
+    
+    public function actionTree()
+    {
+        if (!\Yii::$app->request->get('id') || !$category = Article::cat(\Yii::$app->request->get('id'))) {
+            return false;
+        }
+        
+        foreach (Category::tree() as $category) {
+            if ($category->category_id == \Yii::$app->request->get('id')) {
+                break;
+            }
+        }
+        
+        $this->view->params['bread'] = [];
+        $this->view->params['bread']['/site/category/'.$category->category_id] = $category->title;
+        
+        $this->view->title = $category->title;
+        
+        return $this->render('tree', [
+            'category' => $category
         ]);
     }
     
