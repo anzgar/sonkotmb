@@ -50,6 +50,16 @@ $this->title = 'EasyiiCMS start page';
 <!-- Позиция центральной части где расположены материал и правые виджеты -->
 <div class="template-row middle-two-column">
     <div class="template-position">
+        <!-- Правые виджеты -->
+        <div class="right-widgets">
+            <!-- Модуль правого меню -->
+            <?= $this->render('rightmenu') ?>
+            <!-- Модуль какого-то виджета -->
+            <div class="module-right-widget">
+                <img src="/design/img/right_widget.png">
+            </div>
+        </div>
+        
         <!-- Материал -->
         <div class="article">
             <div class="tabs-container">
@@ -85,15 +95,7 @@ $this->title = 'EasyiiCMS start page';
             </div>
             <a href="#test" class="gradient-btn btn1">Регистрация НКО на мероприятие</a>
         </div>
-        <!-- Правые виджеты -->
-        <div class="right-widgets">
-            <!-- Модуль правого меню -->
-            <?= $this->render('rightmenu') ?>
-            <!-- Модуль какого-то виджета -->
-            <div class="module-right-widget">
-                <img src="/design/img/right_widget.png">
-            </div>
-        </div>
+        
     </div>
 </div>
 
