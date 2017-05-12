@@ -32,6 +32,12 @@ class AController extends Controller
             
             if (is_array($post['Nko']['services']))
                 $post['Nko']['services'] = implode(',', $post['Nko']['services']);
+            
+            if (is_array($post['Nko']['recipients']))
+                $post['Nko']['recipients'] = implode(',', $post['Nko']['recipients']);
+
+            if (is_array($post['Nko']['member']))
+                $post['Nko']['member'] = implode(',', $post['Nko']['member']);
         }
 
         if ($model->load($post)) {
@@ -72,9 +78,15 @@ class AController extends Controller
         if ($post = Yii::$app->request->post()) {
             if (is_array($post['Nko']['activities']))
                 $post['Nko']['activities'] = implode(',', $post['Nko']['activities']);
-            
+
             if (is_array($post['Nko']['services']))
                 $post['Nko']['services'] = implode(',', $post['Nko']['services']);
+            
+            if (is_array($post['Nko']['recipients']))
+                $post['Nko']['recipients'] = implode(',', $post['Nko']['recipients']);
+
+            if (is_array($post['Nko']['member']))
+                $post['Nko']['member'] = implode(',', $post['Nko']['member']);
         }
         
         if ($model->load($post)) {
@@ -98,6 +110,12 @@ class AController extends Controller
             
             if ($model->services)
                 $model->services = explode(',', $model->services);
+            
+            if ($model->recipients)
+                $model->recipients = explode(',', $model->recipients);
+            
+            if ($model->member)
+                $model->member = explode(',', $model->member);
                 
             return $this->render('edit', [
                 'model' => $model

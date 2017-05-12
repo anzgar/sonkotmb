@@ -17,11 +17,14 @@ class Nko extends \yii\easyii\components\ActiveRecord
     {
         return [
             ['nko_id', 'number', 'integerOnly' => true],
+            ['type', 'number', 'integerOnly' => true],
             ['name', 'required'],
             ['name', 'trim'],
             ['activities', 'trim'],
             ['services', 'trim'],
             ['pay', 'trim'],
+            ['recipients', 'trim'],
+            ['member', 'trim'],
             ['slug', 'match', 'pattern' => self::$SLUG_PATTERN, 'message' => Yii::t('easyii', 'Slug can contain only 0-9, a-z and "-" characters (max: 128).')],
             ['slug', 'default', 'value' => null],
             ['slug', 'unique']
@@ -34,7 +37,10 @@ class Nko extends \yii\easyii\components\ActiveRecord
             'name' => Yii::t('easyii', 'Name'),
             'activities' => Yii::t('easyii/nko', 'Activities'),
             'services' => Yii::t('easyii/nko', 'Services'),
+            'recipients' => Yii::t('easyii/nko', 'Recipients'),
+            'member' => Yii::t('easyii/nko', 'Member'),
             'pay' => Yii::t('easyii/nko', 'Pay'),
+            'type' => Yii::t('easyii/nko', 'Type'),
             'slug' => Yii::t('easyii', 'Slug'),
         ];
     }
@@ -84,6 +90,35 @@ class Nko extends \yii\easyii\components\ActiveRecord
             11 => 'семья',
             12 => 'ветераны',
             13 => 'жилищно-коммунальное хозяйство'
+        ];
+    }
+    
+    public function getRecipients()
+    {
+        return [
+            0 => 'дети (до 18 лет)',
+            1 => 'дети с ОВЗ',
+            2 => 'взрослые с ОВЗ',
+            3 => 'дети группы риска',
+            4 => 'ветераны',
+            5 => 'молодёжь (18-30 лет)',
+            6 => 'семьи, находящиеся в трудной жизненной ситуации',
+            7 => 'лица старше 60 лет',
+            8 => 'женщины',
+            9 => 'юридические лица'
+        ];
+    }
+    
+    public function getMember()
+    {
+        return [
+            0 => 'здоровый образ жизни',
+            1 => 'просвещение',
+            2 => 'семья и дети',
+            3 => 'молодёжь и патриотизм',
+            4 => 'экология',
+            5 => 'добровольчество',
+            6 => 'детские и молодёжные организации'
         ];
     }
 }
