@@ -25,8 +25,16 @@ class AController extends Controller
     public function actionCreate($slug = null)
     {
         $model = new Nko;
+        
+        if ($post = Yii::$app->request->post()) {
+            if (is_array($post['Nko']['activities']))
+                $post['Nko']['activities'] = implode(',', $post['Nko']['activities']);
+            
+            if (is_array($post['Nko']['services']))
+                $post['Nko']['services'] = implode(',', $post['Nko']['services']);
+        }
 
-        if ($model->load(Yii::$app->request->post())) {
+        if ($model->load($post)) {
             if(Yii::$app->request->isAjax){
                 Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
                 return ActiveForm::validate($model);
