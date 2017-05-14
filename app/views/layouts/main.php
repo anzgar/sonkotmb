@@ -123,35 +123,25 @@ $asset = \app\assets\AppAsset::register($this);
                 <div class="slider">
                     <ul class="slide-container">
                         <li class="slide">
-                            <img src="/design/img/partner1.jpg">
+                            <a href="http://jcent.ru/contacts/">
+                                <img src="/design/img/partner1.png">
+                            </a>
                         </li>
                         <li class="slide">
-                            <img src="/design/img/partner2.png">
+                            <a href="http://to68.minjust.ru/">
+                                <img src="/design/img/partner2.png">
+                            </a>
                         </li>
                         <li class="slide">
-                            <img src="/design/img/partner3.png">
+                            <a href="http://op-tambov.ru/">
+                                <img src="/design/img/partner3.png">
+                            </a>
                         </li>
                         <li class="slide">
-                            <img src="/design/img/partner4.gif">
+                            <a href="http://www.tambov.gov.ru/">
+                                <img src="/design/img/partner4.png">
+                            </a>
                         </li>
-                        <!--<li class="slide">
-                            <img src="/design/img/main_footer_abstrakt_logo_2.png">
-                        </li>
-                        <li class="slide">
-                            <img src="/design/img/main_footer_abstrakt_logo_3.png">
-                        </li>
-                        <li class="slide">
-                            <img src="/design/img/main_footer_abstrakt_logo.png">
-                        </li>
-                        <li class="slide">
-                            <img src="/design/img/main_footer_abstrakt_logo_2.png">
-                        </li>
-                        <li class="slide">
-                            <img src="/design/img/main_footer_abstrakt_logo_3.png">
-                        </li>
-                        <li class="slide">
-                            <img src="/design/img/main_footer_abstrakt_logo.png">
-                        </li>-->
                     </ul>
                 </div>
                 <div class="arr_prev"></div>
@@ -174,7 +164,7 @@ $asset = \app\assets\AppAsset::register($this);
         <div class="template-position">
             <!-- Модуль копирайт -->
             <div class="module-footer-copyright">
-                © 2017 Портал социально ориентированных некоммерческих организаций Тамбовской области
+                В рамках проекта "Ресурсный центр поддержки общественных инициатив" поддержанного администрацией Тамбовской области на основании постановления администрации Тамбовской области от 01.07.2016 №799 "Об утверждении перечня СО НКО - получателей субсидий из бюджета области в 2016 году" и договора №888 о предоставлении субсидии СО НКО от 12.08.16
             </div>
         </div>
     </div>
