@@ -55,7 +55,7 @@ $asset = \app\assets\AppAsset::register($this);
                     <li><a href="/site/page/4">Ресурсные центры</a></li>
                     <li><a>Медиа</a>
                         <ul>
-                            <li><a href="/">Фотографии</a></li>
+                            <li><a href="/site/photo">Фотографии</a></li>
                             <li><a href="/site/category/8">Видео</a></li>
                         </ul>
                     </li>

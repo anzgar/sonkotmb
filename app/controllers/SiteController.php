@@ -7,6 +7,7 @@ use yii\easyii\modules\news\api\News;
 use yii\easyii\modules\article\api\Article;
 use yii\easyii\modules\page\api\Page;
 use yii\easyii\modules\article\models\Category;
+use yii\easyii\modules\gallery\api\Gallery;
 
 class SiteController extends Controller
 {
@@ -52,7 +53,7 @@ class SiteController extends Controller
                 \Yii::$app->request->get('page') : 0;
         
         $news = News::items([
-            'pagination' => ['pageSize' => 5, 'page' => $page - 1]
+            'pagination' => ['pageSize' => 6, 'page' => $page - 1]
         ]);
         
         return $this->render('news', [
@@ -77,7 +78,7 @@ class SiteController extends Controller
         
         $items = Article::items([
             'where' => ['category_id' => \Yii::$app->request->get('id')],
-            'pagination' => ['pageSize' => 5, 'page' => $page - 1]
+            'pagination' => ['pageSize' => 6, 'page' => $page - 1]
         ]);
 
         return $this->render('сategory', [
@@ -125,6 +126,41 @@ class SiteController extends Controller
                 'item' => $item
             ]);
         }
+    }
+    
+    public function actionPhoto()
+    {
+        $this->view->title = 'Фотогалерея';
+        
+        if (\Yii::$app->request->get('id')) {
+            $item = Gallery::cat(\Yii::$app->request->get('id'));
+            
+            $this->view->params['bread'] = [];
+            $this->view->params['bread']['/site/photo/'] = 'Фотогалерея';
+            $this->view->params['bread']['/site/photo/'.$item->id] = $this->view->title = $item->title;
+            
+            return $this->render('photos', [
+                'items' => $item->photos(),
+                'plugin' => Gallery::plugin()
+            ]);
+        }
+        
+        /*$page = \Yii::$app->request->get('page') ?
+                \Yii::$app->request->get('page') : 0;
+        
+        $news = News::items([
+            'pagination' => ['pageSize' => 6, 'page' => $page - 1]
+        ]);*/
+        
+        $cats = [];
+        foreach (Gallery::cats() as $cat) {
+            $cats[] = Gallery::cat($cat->category_id);
+        }
+        
+        return $this->render('gallery', [
+            'cats' => $cats,
+//            'pages' => News::pages()
+        ]);
     }
     
     public function actionPage()
