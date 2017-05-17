@@ -73,7 +73,7 @@ $this->title = 'EasyiiCMS start page';
                         <div class="article-preview">
                             <img src="<?php if (!$img = $adv->thumb(245,200,0)) {
                                 $img = '/design/img/news_slider_none_photo.jpg';
-                            }?>">
+                            } echo $img; ?>">
                             <div>
                                 <p><?=$adv->text?></p>
                                 <div class="read-more-button"><a href="/site/article/<?=$adv->id?>">Подробнее</a></div>
