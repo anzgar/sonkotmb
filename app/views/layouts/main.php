@@ -144,8 +144,8 @@ $asset = \app\assets\AppAsset::register($this);
                         </li>
                     </ul>
                 </div>
-                <div class="arr_prev"></div>
-                <div class="arr_next"></div>
+                <!--<div class="arr_prev"></div>
+                <div class="arr_next"></div>-->
             </div>
             <!-- Скрипт запускающий слайдер -->
             <script>
