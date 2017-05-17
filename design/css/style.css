@@ -167,7 +167,7 @@ label {margin-bottom: 0 !important; font-weight: normal !important; }
 .footer{height:400px;background:url(../img/green_back.png) repeat-x bottom;}
 .footer .template-position{height:100%;}
 .module-footer-logo-slider{position:relative;max-width:1280px;margin:0 auto;height:100px;top:270px;}
-.module-footer-logo-slider>.slider{overflow:hidden;max-width:1280px;position:relative;margin:0 auto;height:100px;}
+.module-footer-logo-slider>.slider{overflow:hidden;max-width:1280px;position:relative;margin:0 auto;height:100px;text-align:center;}
 .module-footer-logo-slider>.slider>ul{margin:0;padding:0;display:block;list-style:none;font-size:0;}
 .module-footer-logo-slider>.slider>ul>li{display:inline-block;margin:0 30px;}
 .module-footer-logo-slider .arr_prev,.module-footer-logo-slider .arr_next{position:absolute;top:50%;margin-top:-20px;display:block;cursor:pointer;width:40px;height:40px;display:block;}

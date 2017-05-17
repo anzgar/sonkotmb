@@ -63,9 +63,25 @@ $this->title = 'EasyiiCMS start page';
         <!-- Материал -->
         <div class="article">
             <div class="tabs-container">
-                <input type="radio" name="tab" checked="checked" id="tab-1" /><label for="tab-1">Интервью</label>
-                <input type="radio" name="tab" id="tab-2" /><label for="tab-2">Объявления</label>
+                <input type="radio" name="tab" checked="checked" id="tab-1" /><label for="tab-1">Объявления</label>
+                <input type="radio" name="tab" id="tab-2" /><label for="tab-2">Интервью</label>
                 <input type="radio" name="tab" id="tab-3" /><label for="tab-3">Форум</label>
+                <div>
+                    <div class="interview-container">
+                        <h2><a href="/site/article/<?=$adv->id?>"><?=$adv->title?></a></h2>
+
+                        <div class="article-preview">
+                            <img src="<?php if (!$img = $adv->thumb('245', '200', 0)) {
+                                $img = '/design/img/news_slider_none_photo.jpg';
+                            }?>">
+                            <div>
+                                <p><?=$adv->text?></p>
+                                <div class="read-more-button"><a href="/site/article/<?=$adv->id?>">Подробнее</a></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div>
                     <div class="interview-container">
                         <h2><a href="#">Волк Волкович Тамбовский</a></h2>
@@ -83,10 +99,6 @@ $this->title = 'EasyiiCMS start page';
                             </div>
                         </div>
                     </div>
-                </div>
-                <div>
-                    II. В этом положении следует выжидать курдля. Когда зверь приблизится, нужно, сохраняя спокойствие, схватить обеими руками бомбу, которую держат между колен. Голодный курдль обычно глотает сразу. Если курдль не желает брать, для поощрения можно слегка
-                    похлопать его по языку. В случае, если угрожает осечка, некоторые советуют посолиться еще раз, но это рискованный шаг, поскольку курдль может чихнуть. Мало какой охотник пережил чихание курдля.
                 </div>
                 <div>
                     III. Взяв приманку, курдль облизывается и уходит. По проглатывании охотник незамедлительно приступает к активной стадии, то есть при помощи метелки стряхивает с себя лук и приправы, чтобы паста могла свободно проявить свое прочищающее действие; затем

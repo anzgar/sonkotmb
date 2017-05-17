@@ -30,7 +30,10 @@ class SiteController extends Controller
         
         return $this->render('index', [
             'news' => $news,
-            'support' => Page::get(5)
+            'support' => Page::get(5),
+            'adv' => Article::items([
+                        'where' => ['category_id' => 5],
+                    ])[0]
         ]);
     }
     

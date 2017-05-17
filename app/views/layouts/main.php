@@ -150,10 +150,10 @@ $asset = \app\assets\AppAsset::register($this);
             <!-- Скрипт запускающий слайдер -->
             <script>
                 jQuery(window).load(function() {
-                    realResponsiveSlider({
+                    /*realResponsiveSlider({
                         slider: jQuery('.module-footer-logo-slider>.slider'),
                         fixWidth: true
-                    });
+                    });*/
                 });
             </script>
 
