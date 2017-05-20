@@ -181,4 +181,22 @@ class SiteController extends Controller
             ]);
         }
     }
+    
+    public function actionInvalid()
+    {
+        $this->view->title = 'Социальная адаптация инвалидов и их семей';
+        return $this->render('invalid');
+    }
+    
+    public function actionMotherhood()
+    {
+        $this->view->title = 'Профилактика социального сиротства, поддержка материнства и детства';
+        return $this->render('motherhood');
+    }
+    
+    public function actionOld()
+    {
+        $this->view->title = 'Повышение качества жизни людей пожилого возраста';
+        return $this->render('old');
+    }
 }

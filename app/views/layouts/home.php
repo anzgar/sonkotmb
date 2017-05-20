@@ -37,9 +37,9 @@ $asset = \app\assets\AppAsset::register($this);
             <!-- Модуль логина в хидере -->
             <div class="module-header-login">
                 <a href="/" class="header-icon-home"><img src="/design/img/icon_home.png"></a>
-                <a href="#">Вход</a>
+                <a href="/user/login">Вход</a>
                 <span>|</span>
-                <a href="#">Регистрация</a>
+                <a href="/user/register">Регистрация</a>
             </div>
 
         </div>
@@ -91,17 +91,17 @@ $asset = \app\assets\AppAsset::register($this);
                 <div>
                     <img src="/design/img/main_help_icon_1.png">
                     <h3>Социальная адаптация инвалидов и их семей</h3>
-                    <div class="read-more-button"><a href="/adaptation.html">Подробнее</a></div>
+                    <div class="read-more-button"><a href="/site/invalid">Подробнее</a></div>
                 </div>
                 <div>
                     <img src="/design/img/main_help_icon_2.png">
                     <h3>Профилактика социального сиротства, поддержка материнства и детства</h3>
-                    <div class="read-more-button"><a href="/sirotnet.html">Подробнее</a></div>
+                    <div class="read-more-button"><a href="/site/motherhood">Подробнее</a></div>
                 </div>
                 <div>
                     <img src="/design/img/main_help_icon_3.png">
                     <h3>Повышение качества жизни людей пожилого возраста</h3>
-                    <div class="read-more-button"><a href="/old.html">Подробнее</a></div>
+                    <div class="read-more-button"><a href="/site/old">Подробнее</a></div>
                 </div>
             </div>
         </div>
