@@ -103,6 +103,11 @@ $asset = \app\assets\AppAsset::register($this);
                     <h3>Повышение качества жизни людей пожилого возраста</h3>
                     <div class="read-more-button"><a href="/site/old">Подробнее</a></div>
                 </div>
+                <div>
+                    <img src="/design/img/main_help_icon_4.png">
+                    <h3>Помощь семьям, находящимся в трудной жизненной ситуации</h3>
+                    <div class="read-more-button"><a href="/site/family">Подробнее</a></div>
+                </div>
             </div>
         </div>
     </div>

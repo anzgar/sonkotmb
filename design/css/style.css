@@ -160,7 +160,7 @@ label {margin-bottom: 0 !important; font-weight: normal !important; }
 /*Префутер*/
 .pre-footer{}
 .module-prefooter{display:table;border-collapse:collapse;width:100%;}
-.module-prefooter>div{display:table-cell;width:33%;text-align:center;vertical-align:top;padding:10px;}
+.module-prefooter>div{display:table-cell;width:25%;text-align:center;vertical-align:top;padding:10px;}
 .module-prefooter h3{font-family: 'gothic';color:#0948ac;height:70px;font-size:16px;}
 
 /*Футер*/

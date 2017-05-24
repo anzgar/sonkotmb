@@ -81,5 +81,5 @@ if (YII_ENV_DEV) {
 $config = array_merge_recursive($config,
     require($webroot . '/vendor/developeruz/easyii-user-module/config/user_module_config.php'),
     require($webroot . '/vendor/noumo/easyii/config/easyii.php'));
-//$config['components']['user'] = [ 'identityClass' => 'developeruz\easyii_user\models\User' ];
+$config['components']['user'] = [ 'identityClass' => 'developeruz\easyii_user\models\User', ];
 return $config;

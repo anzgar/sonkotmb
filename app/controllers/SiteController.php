@@ -8,6 +8,7 @@ use yii\easyii\modules\article\api\Article;
 use yii\easyii\modules\page\api\Page;
 use yii\easyii\modules\article\models\Category;
 use yii\easyii\modules\gallery\api\Gallery;
+use app\modules\nko\models\Nko;
 
 class SiteController extends Controller
 {
@@ -198,5 +199,25 @@ class SiteController extends Controller
     {
         $this->view->title = 'Повышение качества жизни людей пожилого возраста';
         return $this->render('old');
+    }
+    
+    public function actionFamily()
+    {
+        $this->view->title = 'Помощь семьям, находящимся в трудной жизненной ситуации';
+        return $this->render('family');
+    }
+    
+    public function actionStepbystep()
+    {
+        $this->view->title = 'Поэтапный доступ НКО к бюджетным средствам';
+        return $this->render('stepbystep');
+    }
+    
+    public function actionStepdb()
+    {
+        $this->view->title = 'Помощь семьям, находящимся в трудной жизненной ситуации';
+        return $this->render('stepdb', [
+            'model' => new Nko
+        ]);
     }
 }

@@ -1,3 +1,3 @@
 <?php
 
-return ['admins' => ['admin']];
+return ['admins' => ['root']];
