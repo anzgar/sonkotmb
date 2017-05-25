@@ -220,4 +220,9 @@ class SiteController extends Controller
             'model' => new Nko
         ]);
     }
+    
+    public function actionFindnko($op, $activities, $services, $pay, $recipients)
+    {
+        return Nko::findNko($op, $activities, $services, $pay, $recipients);
+    }
 }

@@ -35,13 +35,13 @@ class Nko extends \yii\easyii\components\ActiveRecord
     {
         return [
             'name' => Yii::t('easyii', 'Name'),
-            'activities' => Yii::t('easyii/nko', 'Activities'),
-            'services' => Yii::t('easyii/nko', 'Services'),
-            'recipients' => Yii::t('easyii/nko', 'Recipients'),
-            'member' => Yii::t('easyii/nko', 'Member'),
-            'pay' => Yii::t('easyii/nko', 'Pay'),
-            'type' => Yii::t('easyii/nko', 'Type'),
-            'slug' => Yii::t('easyii', 'Slug'),
+            'activities' => 'Основные направления деятельности',
+            'services' => 'Сфера услуг',
+            'recipients' => 'Основные категории благополучателей',
+            'member' => 'Участник актива',
+            'pay' => 'Оплата',
+            'type' => 'Отображать в разделе',
+            'slug' => 'Метка',
         ];
     }
 
@@ -120,5 +120,10 @@ class Nko extends \yii\easyii\components\ActiveRecord
             5 => 'добровольчество',
             6 => 'детские и молодёжные организации'
         ];
+    }
+    
+    public static function findNko($op, $activities, $services, $pay, $recipients)
+    {
+        
     }
 }
