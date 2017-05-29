@@ -100,7 +100,7 @@ use yii\helpers\Url;
                     ...форум
                 </div>
             </div>
-            <a href="#test" class="gradient-btn btn1">Регистрация НКО на мероприятие</a>
+            <a href="/site/takepart" class="gradient-btn btn1">Регистрация НКО на мероприятие</a>
         </div>
         
     </div>
@@ -113,7 +113,7 @@ use yii\helpers\Url;
         <div class="module-after-middle-content">
             <div>
                 <a href="http://sonkotmb.ru/site/page/4"><img src="/design/img/main_after_content_pic.jpg" /></a>
-                <a href="#test" class="gradient-btn btn2">Предложите идею</a>
+                <a href="/site/idea" class="gradient-btn btn2">Предложите идею</a>
             </div>
             <div>
                 <h2>Поддержите проект НКО</h2>
