@@ -252,4 +252,25 @@ class SiteController extends Controller
         $this->view->title = 'Предложите свою идею';
         return $this->render('idea');
     }
+    
+    public function actionTakepart()
+    {
+        if ($post = \Yii::$app->request->post()) {
+            $htmlMail = 'Имя: '.$post['fio'].'<br />';
+            $htmlMail .= 'Телефон: '.$post['phone'].'<br />';
+            $htmlMail .= 'НКО: '.$post['nko'].'<br />';
+            
+            if (\Yii::$app->mailer->compose()
+                ->setFrom('robot@sonkotmb.ru')
+                ->setTo(Setting::get('admin_email'))
+                ->setSubject('Sonkotmb: регистрация НКО на мероприятие')
+                ->setHtmlBody($htmlMail)
+                ->send())
+                die('ok');
+            else
+                die('Ошибка отправки');
+        }
+        $this->view->title = 'Регистрация НКО на мероприятие';
+        return $this->render('takepart');
+    }
 }

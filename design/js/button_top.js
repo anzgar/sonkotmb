@@ -16,6 +16,18 @@ $(function() {
  
  
  $('#sendidea').click(function() {
+    if (!$('#fio').val()) {
+        alert('Не указано ФИО');
+        return false;
+    }
+    if (!$('#phone').val()) {
+        alert('Не указан телефон');
+        return false;
+    }
+    if (!$('#idea').val()) {
+        alert('Вы не описали Вашу идею');
+        return false;
+    }
     $.post( "/site/idea", { fio: $('#fio').val(), phone: $('#phone').val(), idea: $('#idea').val(), _csrf: $('#_csrf').val() })
         .done(function( data ) {
           if (data === 'ok') {
@@ -24,5 +36,28 @@ $(function() {
           }
           else alert(data);
         });
-});
+ });
+ 
+ $('#sendtakepart').click(function() {
+     if (!$('#fio').val()) {
+        alert('Не указано ФИО');
+        return false;
+    }
+    if (!$('#phone').val()) {
+        alert('Не указан телефон');
+        return false;
+    }
+    if (!$('#nko').val()) {
+        alert('Не указано наименование НКО');
+        return false;
+    }
+    $.post( "/site/takepart", { fio: $('#fio').val(), phone: $('#phone').val(), nko: $('#nko').val(), _csrf: $('#_csrf').val() })
+        .done(function( data ) {
+          if (data === 'ok') {
+              alert('Спасибо за отправку!');
+              location.href = '/';
+          }
+          else alert(data);
+        });
+ });
 });
