@@ -37,7 +37,7 @@ $asset = \app\assets\AppAsset::register($this);
             <!-- Модуль логина в хидере -->
             <div class="module-header-login">
                 <a href="/" class="header-icon-home"><img src="/design/img/icon_home.png"></a>
-                <?php if (!$this->params['userId']) { ?>
+                <?php if (!\Yii::$app->user->id) { ?>
                     <a href="/user/login">Вход</a>
                     <span>|</span>
                     <a href="/user/register">Регистрация</a>
