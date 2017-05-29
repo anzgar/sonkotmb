@@ -279,3 +279,6 @@ padding: 0;}
 
 .module-footer-logo-slider .slide img {height:100px;}
 .tabs-container {max-width:1000px; margin-left:50px;}
+
+.form-group {width:93%;}
+.btn-block {width:93% !important;}

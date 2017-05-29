@@ -29,11 +29,16 @@ class SiteController extends Controller
             'pagination' => ['pageSize' => 5, 'page' => 1]
         ]);
         
+        $this->view->params['userId'] = \Yii::$app->user->id;
+        
         return $this->render('index', [
             'news' => $news,
             'support' => Page::get(5),
             'adv' => Article::items([
                         'where' => ['category_id' => 5],
+                    ])[0],
+            'interview' => Article::items([
+                        'where' => ['category_id' => 4],
                     ])[0]
         ]);
     }

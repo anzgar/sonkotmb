@@ -37,9 +37,14 @@ $asset = \app\assets\AppAsset::register($this);
             <!-- Модуль логина в хидере -->
             <div class="module-header-login">
                 <a href="/" class="header-icon-home"><img src="/design/img/icon_home.png"></a>
-                <a href="/user/login">Вход</a>
-                <span>|</span>
-                <a href="/user/register">Регистрация</a>
+                
+                <?php if (!$this->params['userId']) { ?>
+                    <a href="/user/login">Вход</a>
+                    <span>|</span>
+                    <a href="/user/register">Регистрация</a>
+                <?php } else { ?>
+                    <a href="/private">Личный кабинет</a>
+                <?php } ?>
             </div>
 
         </div>
@@ -120,8 +125,8 @@ $asset = \app\assets\AppAsset::register($this);
                 <div class="slider">
                     <ul class="slide-container">
                         <li class="slide">
-                            <a href="http://jcent.ru/contacts/">
-                                <img src="/design/img/partner1.png">
+                            <a href="http://www.tambov.gov.ru/">
+                                <img src="/design/img/partner4.png">
                             </a>
                         </li>
                         <li class="slide">
@@ -135,8 +140,8 @@ $asset = \app\assets\AppAsset::register($this);
                             </a>
                         </li>
                         <li class="slide">
-                            <a href="http://www.tambov.gov.ru/">
-                                <img src="/design/img/partner4.png">
+                            <a href="http://jcent.ru/contacts/">
+                                <img src="/design/img/partner1.png">
                             </a>
                         </li>
                     </ul>

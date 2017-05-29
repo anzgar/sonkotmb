@@ -1,7 +1,6 @@
 <?php
 use yii\helpers\Url;
 
-$this->title = 'EasyiiCMS start page';
 ?>
 <!-- Позиция новостного слайдера -->
 <div class="template-row news-slider">
@@ -56,7 +55,7 @@ $this->title = 'EasyiiCMS start page';
             <?= $this->render('rightmenu') ?>
             <!-- Модуль какого-то виджета -->
             <div class="module-right-widget">
-                <img src="/design/img/right_widget.png">
+                <!--<img src="/design/img/right_widget.png">-->
             </div>
         </div>
         
@@ -73,7 +72,7 @@ $this->title = 'EasyiiCMS start page';
                         <div class="article-preview">
                             <img src="<?php if (!$img = $adv->thumb(245,200,0)) {
                                 $img = '/design/img/news_slider_none_photo.jpg';
-                            } echo $img; ?>">
+                            } echo $img; ?>" />
                             <div>
                                 <p><?=$adv->text?></p>
                                 <div class="read-more-button"><a href="/site/article/<?=$adv->id?>">Подробнее</a></div>
@@ -83,25 +82,22 @@ $this->title = 'EasyiiCMS start page';
                 </div>
                 <div>
                     <div class="interview-container">
-                        <h2><a href="#">Волк Волкович Тамбовский</a></h2>
-                        <!--<p class="subtitle">Народный герой, широко известный персонаж русских народных сказок</p>-->
+                        <h2><a href="/site/article/<?=$interview->id?>"><?=$interview->title?></a></h2>
 
                         <div class="article-preview">
-                            <img src="/design/img/news_slider_none_photo.jpg">
+                            <img src="<?php if (!$img = $interview->thumb(245,200,0)) {
+                                $img = '/design/img/news_slider_none_photo.jpg';
+                            } echo $img; ?>" />
                             <div>
-                                <h3>Интервью с В.В. Тамбовским</h3>
-                                <p> Жил на свете старик в бороде. Говорил он: «Я знал, быть беде. Две совы, три чижа И четыре стрижа Свили гнезда в моей бороде». Жил на свете старик в бороде. Говорил он: «Я знал, быть беде. Две совы, три чижа И четыре
-                                    стрижа Свили гнезда в моей бороде». Жил на свете старик в бороде. Говорил он: «Я знал, быть беде. Две совы, три чижа И четыре стрижа Свили гнезда в моей бороде». Жил на свете старик в бороде. Говорил он: «Я знал,
-                                    быть беде. Две совы, три чижа И четыре стрижа Свили гнезда в моей бороде». Жил на свете старик в бороде. Говорил он: «Я знал, быть беде. Две совы, три чижа И четыре стрижа Свили гнезда в моей бороде».</p>
-                                <div class="read-more-button"><a href="#">Подробнее</a></div>
+                                <p><?=$interview->short?></p>
+                                <div class="read-more-button"><a href="/site/article/<?=$interview->id?>">Подробнее</a></div>
 
                             </div>
                         </div>
                     </div>
                 </div>
                 <div>
-                    III. Взяв приманку, курдль облизывается и уходит. По проглатывании охотник незамедлительно приступает к активной стадии, то есть при помощи метелки стряхивает с себя лук и приправы, чтобы паста могла свободно проявить свое прочищающее действие; затем
-                    настраивает часовой механизм и удаляется возможно быстрее в сторону, противоположную той, откуда прибыл.
+                    ...форум
                 </div>
             </div>
             <a href="#test" class="gradient-btn btn1">Регистрация НКО на мероприятие</a>
@@ -116,7 +112,7 @@ $this->title = 'EasyiiCMS start page';
         <!-- Модуль информации -->
         <div class="module-after-middle-content">
             <div>
-                <img src="/design/img/main_after_content_pic.jpg">
+                <a href="http://sonkotmb.ru/site/page/4"><img src="/design/img/main_after_content_pic.jpg" /></a>
                 <a href="#test" class="gradient-btn btn2">Предложите идею</a>
             </div>
             <div>
