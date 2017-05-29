@@ -9,6 +9,7 @@ use yii\easyii\modules\page\api\Page;
 use yii\easyii\modules\article\models\Category;
 use yii\easyii\modules\gallery\api\Gallery;
 use app\modules\nko\models\Nko;
+use yii\easyii\models\Setting;
 
 class SiteController extends Controller
 {
@@ -229,5 +230,26 @@ class SiteController extends Controller
     public function actionFindnko($op, $activities, $services, $pay, $recipients)
     {
         return Nko::findNko($op, $activities, $services, $pay, $recipients);
+    }
+    
+    public function actionIdea()
+    {
+        if ($post = \Yii::$app->request->post()) {
+            $htmlMail = 'Имя: '.$post['fio'].'<br />';
+            $htmlMail .= 'Телефон: '.$post['phone'].'<br />';
+            $htmlMail .= 'Идея: '.$post['idea'].'<br />';
+            
+            if (\Yii::$app->mailer->compose()
+                ->setFrom('robot@sonkotmb.ru')
+                ->setTo(Setting::get('admin_email'))
+                ->setSubject('Sonkotmb: идея')
+                ->setHtmlBody($htmlMail)
+                ->send())
+                die('ok');
+            else
+                die('Ошибка отправки');
+        }
+        $this->view->title = 'Предложите свою идею';
+        return $this->render('idea');
     }
 }
