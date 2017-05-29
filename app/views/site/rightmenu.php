@@ -8,5 +8,7 @@
         <li><a href="/site/tree/14">Отчёты НКО</a></li>
         <li><a href="/site/page/3">Библиотека НКО</a></li>
         <li><a href="/site/page/2">Правовая база</a></li>
+        <li><a href="/site/category/5">Объявления</a></li>
+        <li><a href="/site/category/4">Интервью</a></li>
     </ul>
 </div>
