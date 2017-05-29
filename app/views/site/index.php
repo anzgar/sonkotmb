@@ -67,15 +67,15 @@ use yii\helpers\Url;
                 <input type="radio" name="tab" id="tab-3" /><label for="tab-3">Форум</label>
                 <div>
                     <div class="interview-container">
-                        <h2><a href="/site/article/<?=$adv->id?>"><?=$adv->title?></a></h2>
+                        <h2><a href="/site/article/<?=$adv['item_id']?>"><?=$adv['title']?></a></h2>
 
                         <div class="article-preview">
-                            <img src="<?php if (!$img = $adv->thumb(245,200,0)) {
+                            <img style="width:245px;" src="<?php if (!$img = $adv['image']) {
                                 $img = '/design/img/news_slider_none_photo.jpg';
                             } echo $img; ?>" />
                             <div>
-                                <p><?=$adv->text?></p>
-                                <div class="read-more-button"><a href="/site/article/<?=$adv->id?>">Подробнее</a></div>
+                                <p><?=$adv['text']?></p>
+                                <div class="read-more-button"><a href="/site/article/<?=$adv['item_id']?>">Подробнее</a></div>
                             </div>
                         </div>
                     </div>

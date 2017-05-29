@@ -31,15 +31,24 @@ class SiteController extends Controller
         
         $this->view->params['userId'] = \Yii::$app->user->id;
         
+//        die(\Yii::$app->db->queryCache.'');
+        
+        $adv = \Yii::$app->db->createCommand('SELECT item_id,title,text,image FROM easyii_article_items WHERE category_id=5 ORDER BY item_id DESC LIMIT 1')->queryOne();
+//        die(print_r($adv));
+        /*$adv = Article::items([
+                        'where' => ['category_id' => 5],
+                    ])[0];*/
+        
+        $interview = Article::items([
+                        'where' => ['category_id' => 4],
+                    ])[0];
+        
+//        die(print_r($interview));
         return $this->render('index', [
             'news' => $news,
             'support' => Page::get(5),
-            'adv' => Article::items([
-                        'where' => ['category_id' => 5],
-                    ])[0],
-            'interview' => Article::items([
-                        'where' => ['category_id' => 4],
-                    ])[0]
+            'adv' => $adv,
+            'interview' => $interview
         ]);
     }
     

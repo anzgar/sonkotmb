@@ -7,5 +7,8 @@ return [
     'password' => 'viesha66',
     'charset' => 'utf8',
     'tablePrefix' => '',
-    'enableSchemaCache' => true,
+    'enableSchemaCache' => false,
+    'schemaCacheDuration' => 0,
+    'queryCache' => false,
+    'queryCacheDuration' => 0
 ];
