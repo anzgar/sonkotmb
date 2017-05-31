@@ -30,7 +30,7 @@ class SiteController extends Controller
             'pagination' => ['pageSize' => 5, 'page' => 1]
         ]);
         
-        $adv = \Yii::$app->db->createCommand('SELECT item_id,title,text,image FROM easyii_article_items WHERE category_id=5 ORDER BY item_id DESC LIMIT 1')->queryOne();
+        $adv = \Yii::$app->db->createCommand('SELECT item_id,title,short,image FROM easyii_article_items WHERE category_id=5 ORDER BY item_id DESC LIMIT 1')->queryOne();
         
         $interview = Article::items([
                         'where' => ['category_id' => 4],
