@@ -74,7 +74,7 @@ use yii\helpers\Url;
                                 $img = '/design/img/news_slider_none_photo.jpg';
                             } echo $img; ?>" />
                             <div>
-                                <p><?=$adv['text']?></p>
+                                <p><?=$adv['short']?></p>
                                 <div class="read-more-button"><a href="/site/article/<?=$adv['item_id']?>">Подробнее</a></div>
                             </div>
                         </div>
