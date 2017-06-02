@@ -8,7 +8,7 @@ $webroot = dirname($basePath);
 $config = [
     'id' => 'app',
     'basePath' => $basePath,
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'podium'],
     'language' => 'ru-RU',
     'runtimePath' => $webroot . '/runtime',
     'vendorPath' => $webroot . '/vendor',
@@ -16,6 +16,22 @@ $config = [
         /*'user' => [
             'class' => 'dektrium\user\Module',
         ],*/
+        'podium' => [
+            'class' => 'bizley\podium\Podium',
+            'userComponent' => 'user',
+            'adminId' => 4,
+            'rbacComponent' => [
+                'class' => 'yii\rbac\DbManager',
+                'db' => require(__DIR__ . '/db.php'),
+                'itemTable' => '{{%podium_auth_item}}',
+                'itemChildTable' => '{{%podium_auth_item_child}}',
+                'assignmentTable' => '{{%podium_auth_assignment}}',
+                'ruleTable' => '{{%podium_auth_rule}}',
+                'cache' => [
+                    'class' => 'yii\caching\FileCache',
+                ]
+            ]
+        ],
     ],
     'components' => [
         'request' => [
