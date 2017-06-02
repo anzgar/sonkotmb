@@ -26,6 +26,19 @@ class ComposerStaticInita2e55db1a31cd1e76916f710ad1d6a9d
             'yii\\authclient\\' => 15,
             'yii\\' => 4,
         ),
+        'k' => 
+        array (
+            'kartik\\sortable\\' => 16,
+            'kartik\\select2\\' => 15,
+            'kartik\\plugins\\fileinput\\' => 25,
+            'kartik\\file\\' => 12,
+            'kartik\\date\\' => 12,
+            'kartik\\base\\' => 12,
+        ),
+        'h' => 
+        array (
+            'himiklab\\yii2\\recaptcha\\' => 24,
+        ),
         'd' => 
         array (
             'dosamigos\\selectize\\' => 20,
@@ -36,6 +49,11 @@ class ComposerStaticInita2e55db1a31cd1e76916f710ad1d6a9d
         array (
             'creocoder\\nestedsets\\' => 21,
             'cebe\\markdown\\' => 14,
+        ),
+        'b' => 
+        array (
+            'bizley\\quill\\' => 13,
+            'bizley\\podium\\' => 14,
         ),
         'F' => 
         array (
@@ -88,6 +106,34 @@ class ComposerStaticInita2e55db1a31cd1e76916f710ad1d6a9d
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
         ),
+        'kartik\\sortable\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-sortable',
+        ),
+        'kartik\\select2\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-select2',
+        ),
+        'kartik\\plugins\\fileinput\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/bootstrap-fileinput',
+        ),
+        'kartik\\file\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-fileinput',
+        ),
+        'kartik\\date\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-datepicker',
+        ),
+        'kartik\\base\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-krajee-base',
+        ),
+        'himiklab\\yii2\\recaptcha\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/himiklab/yii2-recaptcha-widget',
+        ),
         'dosamigos\\selectize\\' => 
         array (
             0 => __DIR__ . '/..' . '/2amigos/yii2-selectize-widget/src',
@@ -108,6 +154,14 @@ class ComposerStaticInita2e55db1a31cd1e76916f710ad1d6a9d
         array (
             0 => __DIR__ . '/..' . '/cebe/markdown',
         ),
+        'bizley\\quill\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/bizley/quill',
+        ),
+        'bizley\\podium\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/bizley/podium/src',
+        ),
         'Faker\\' => 
         array (
             0 => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker',
@@ -115,6 +169,13 @@ class ComposerStaticInita2e55db1a31cd1e76916f710ad1d6a9d
     );
 
     public static $prefixesPsr0 = array (
+        'c' => 
+        array (
+            'cebe\\gravatar\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/cebe/yii2-gravatar',
+            ),
+        ),
         'H' => 
         array (
             'HTMLPurifier' => 

@@ -136,8 +136,9 @@ class DbCache extends Cache
             $this->db->enableQueryCache = true;
 
             return $result;
+        } else {
+            return $query->createCommand($this->db)->queryScalar();
         }
-        return $query->createCommand($this->db)->queryScalar();
     }
 
     /**
@@ -186,21 +187,19 @@ class DbCache extends Cache
      */
     protected function setValue($key, $value, $duration)
     {
-        $result = $this->db->noCache(function (Connection $db) use ($key, $value, $duration) {
-            $command = $db->createCommand()
-                ->update($this->cacheTable, [
-                    'expire' => $duration > 0 ? $duration + time() : 0,
-                    'data' => [$value, \PDO::PARAM_LOB],
-                ], ['id' => $key]);
-            return $command->execute();
-        });
+        $command = $this->db->createCommand()
+            ->update($this->cacheTable, [
+                'expire' => $duration > 0 ? $duration + time() : 0,
+                'data' => [$value, \PDO::PARAM_LOB],
+            ], ['id' => $key]);
 
-        if ($result) {
+        if ($command->execute()) {
             $this->gc();
 
             return true;
+        } else {
+            return $this->addValue($key, $value, $duration);
         }
-        return $this->addValue($key, $value, $duration);
     }
 
     /**
@@ -217,14 +216,12 @@ class DbCache extends Cache
         $this->gc();
 
         try {
-            $this->db->noCache(function (Connection $db) use ($key, $value, $duration) {
-                $db->createCommand()
-                    ->insert($this->cacheTable, [
-                        'id' => $key,
-                        'expire' => $duration > 0 ? $duration + time() : 0,
-                        'data' => [$value, \PDO::PARAM_LOB],
-                    ])->execute();
-            });
+            $this->db->createCommand()
+                ->insert($this->cacheTable, [
+                    'id' => $key,
+                    'expire' => $duration > 0 ? $duration + time() : 0,
+                    'data' => [$value, \PDO::PARAM_LOB],
+                ])->execute();
 
             return true;
         } catch (\Exception $e) {
@@ -240,11 +237,9 @@ class DbCache extends Cache
      */
     protected function deleteValue($key)
     {
-        $this->db->noCache(function (Connection $db) use ($key) {
-            $db->createCommand()
-                ->delete($this->cacheTable, ['id' => $key])
-                ->execute();
-        });
+        $this->db->createCommand()
+            ->delete($this->cacheTable, ['id' => $key])
+            ->execute();
 
         return true;
     }

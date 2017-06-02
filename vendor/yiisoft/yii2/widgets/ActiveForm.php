@@ -111,7 +111,6 @@ class ActiveForm extends Widget
      * This property must be set `true` if you want to support client validation and/or AJAX validation, or if you
      * want to take advantage of the `yii.activeForm` plugin. When this is `false`, the form will not generate
      * any JavaScript.
-     * @see registerClientScript
      */
     public $enableClientScript = true;
     /**
@@ -192,7 +191,7 @@ class ActiveForm extends Widget
 
     /**
      * Runs the widget.
-     * This registers the necessary JavaScript code and renders the form open and close tags.
+     * This registers the necessary JavaScript code and renders the form close tag.
      * @throws InvalidCallException if `beginField()` and `endField()` calls are not matching.
      */
     public function run()
@@ -206,24 +205,15 @@ class ActiveForm extends Widget
         echo $content;
 
         if ($this->enableClientScript) {
-            $this->registerClientScript();
+            $id = $this->options['id'];
+            $options = Json::htmlEncode($this->getClientOptions());
+            $attributes = Json::htmlEncode($this->attributes);
+            $view = $this->getView();
+            ActiveFormAsset::register($view);
+            $view->registerJs("jQuery('#$id').yiiActiveForm($attributes, $options);");
         }
 
         echo Html::endForm();
-    }
-
-    /**
-     * This registers the necessary JavaScript code.
-     * @since 2.0.12
-     */
-    public function registerClientScript()
-    {
-        $id = $this->options['id'];
-        $options = Json::htmlEncode($this->getClientOptions());
-        $attributes = Json::htmlEncode($this->attributes);
-        $view = $this->getView();
-        ActiveFormAsset::register($view);
-        $view->registerJs("jQuery('#$id').yiiActiveForm($attributes, $options);");
     }
 
     /**

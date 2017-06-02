@@ -9,7 +9,6 @@ namespace yii\filters;
 
 use yii\base\Component;
 use yii\base\Action;
-use yii\base\InvalidConfigException;
 use yii\web\User;
 use yii\web\Request;
 use yii\base\Controller;
@@ -45,8 +44,8 @@ class AccessRule extends Component
      */
     public $controllers;
     /**
-     * @var array list of roles that this rule applies to (requires properly configured User component).
-     * Two special roles are recognized, and they are checked via [[User::isGuest]]:
+     * @var array list of roles that this rule applies to. Two special roles are recognized, and
+     * they are checked via [[User::isGuest]]:
      *
      * - `?`: matches a guest user (not authenticated yet)
      * - `@`: matches an authenticated user
@@ -102,9 +101,9 @@ class AccessRule extends Component
     /**
      * Checks whether the Web user is allowed to perform the specified action.
      * @param Action $action the action to be performed
-     * @param User|false $user the user object or `false` in case of detached User component
+     * @param User $user the user object
      * @param Request $request
-     * @return bool|null `true` if the user is allowed, `false` if the user is denied, `null` if the rule does not apply to the user
+     * @return bool|null true if the user is allowed, false if the user is denied, null if the rule does not apply to the user
      */
     public function allows($action, $user, $request)
     {
@@ -116,9 +115,9 @@ class AccessRule extends Component
             && $this->matchCustom($action)
         ) {
             return $this->allow ? true : false;
+        } else {
+            return null;
         }
-
-        return null;
     }
 
     /**
@@ -142,15 +141,11 @@ class AccessRule extends Component
     /**
      * @param User $user the user object
      * @return bool whether the rule applies to the role
-     * @throws InvalidConfigException if User component is detached
      */
     protected function matchRole($user)
     {
         if (empty($this->roles)) {
             return true;
-        }
-        if ($user === false) {
-            throw new InvalidConfigException('The user application component must be available to specify roles in AccessRule.');
         }
         foreach ($this->roles as $role) {
             if ($role === '?') {
@@ -170,7 +165,7 @@ class AccessRule extends Component
     }
 
     /**
-     * @param string|null $ip the IP address
+     * @param string $ip the IP address
      * @return bool whether the rule applies to the IP address
      */
     protected function matchIP($ip)
@@ -179,14 +174,7 @@ class AccessRule extends Component
             return true;
         }
         foreach ($this->ips as $rule) {
-            if ($rule === '*' ||
-                $rule === $ip ||
-                (
-                    $ip !== null &&
-                    ($pos = strpos($rule, '*')) !== false &&
-                    strncmp($ip, $rule, $pos) === 0
-                )
-            ) {
+            if ($rule === '*' || $rule === $ip || (($pos = strpos($rule, '*')) !== false && !strncmp($ip, $rule, $pos))) {
                 return true;
             }
         }

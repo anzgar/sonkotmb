@@ -527,7 +527,6 @@ class AssetManager extends Component
                 [
                     'dirMode' => $this->dirMode,
                     'fileMode' => $this->fileMode,
-                    'copyEmptyDirectories' => false,
                 ]
             );
             if (!isset($opts['beforeCopy'])) {
