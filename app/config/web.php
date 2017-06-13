@@ -86,17 +86,13 @@ $config = [
     'as AccessBehavior' => [
         'class' => \developeruz\db_rbac\behaviors\AccessBehavior::className(),
         'login_url' => '/admin/sign/in',
+        'protect' => ['admin', 'user'],
         'rules' => [
             'user/security' => [['actions' => ['login'], 'allow' => true ],
                                 ['actions' => ['logout'], 'roles' => ['@'], 'allow' => true ]],
             'user/settings' => [['roles' => ['@'], 'allow' => true ]],
             'admin/sign' => [['actions' => ['in'], 'allow' => true],
-                             ['actions' => ['out'], 'roles' => ['@'], 'allow' => true ]],
-
-            'site' =>[[ 'allow' => true]],
-            'articles' =>[[ 'allow' => true]],
-            'gallery' =>[[ 'allow' => true]],
-            'news' =>[[ 'allow' => true]],
+                             ['actions' => ['out'], 'roles' => ['@'], 'allow' => true ]]
         ],
     ],
     'params' => $params,
