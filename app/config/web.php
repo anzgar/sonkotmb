@@ -83,6 +83,22 @@ $config = [
         ],
         'db' => require(__DIR__ . '/db.php'),
     ],
+    'as AccessBehavior' => [
+        'class' => \developeruz\db_rbac\behaviors\AccessBehavior::className(),
+        'login_url' => '/admin/sign/in',
+        'rules' => [
+            'user/security' => [['actions' => ['login'], 'allow' => true ],
+                                ['actions' => ['logout'], 'roles' => ['@'], 'allow' => true ]],
+            'user/settings' => [['roles' => ['@'], 'allow' => true ]],
+            'admin/sign' => [['actions' => ['in'], 'allow' => true],
+                             ['actions' => ['out'], 'roles' => ['@'], 'allow' => true ]],
+
+            'site' =>[[ 'allow' => true]],
+            'articles' =>[[ 'allow' => true]],
+            'gallery' =>[[ 'allow' => true]],
+            'news' =>[[ 'allow' => true]],
+        ],
+    ],
     'params' => $params,
 ];
 
@@ -101,5 +117,5 @@ $config = array_merge_recursive($config,
     require($webroot . '/vendor/developeruz/easyii-user-module/config/user_module_config.php'),
     require($webroot . '/vendor/developeruz/easyii-rbac-module/config/rbac_module_config.php'),
     require($webroot . '/vendor/noumo/easyii/config/easyii.php'));
-$config['components']['user'] = [ 'identityClass' => 'developeruz\easyii_user\models\User', ];
+$config['components']['user'] = [ 'identityClass' => 'developeruz\easyii_rbac\models\User', ];
 return $config;
