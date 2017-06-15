@@ -11,5 +11,6 @@
         <li><a href="/site/category/5">Объявления</a></li>
         <li><a href="/site/category/4">Интервью</a></li>
         <li><a href="/site/nkobl">База НКО области</a></li>
+        <li><a href="/site/category/54">Поддержите проект НКО</a></li>
     </ul>
 </div>
