@@ -221,15 +221,35 @@ class SiteController extends Controller
     
     public function actionStepdb()
     {
-        $this->view->title = 'Помощь семьям, находящимся в трудной жизненной ситуации';
+        $this->view->title = 'База данных СО НКО, оказывающих социальные услуги';
         return $this->render('stepdb', [
             'model' => new Nko
         ]);
     }
     
-    public function actionFindnko($op, $activities, $services, $pay, $recipients)
+    public function actionNkobl()
     {
-        return Nko::findNko($op, $activities, $services, $pay, $recipients);
+        $this->view->title = 'База данных НКО области';
+        return $this->render('nkobl', [
+            'model' => new Nko
+        ]);
+    }
+    
+    public function actionFindnko()
+    {
+        return \Yii::$app->request->post('type') ?
+            json_encode(Nko::findNko(    //1 - поэтапный
+                \Yii::$app->request->post('activities'),
+                \Yii::$app->request->post('services'),
+                \Yii::$app->request->post('pay'),
+                \Yii::$app->request->post('recipients')
+            )) :
+            json_encode(Nko::findNkobl(   //0 - бд нко
+                \Yii::$app->request->post('activities'),
+                \Yii::$app->request->post('member'),
+                \Yii::$app->request->post('pay'),
+                \Yii::$app->request->post('recipients')
+            ));
     }
     
     public function actionIdea()

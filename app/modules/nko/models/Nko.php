@@ -52,9 +52,9 @@ class Nko extends \yii\easyii\components\ActiveRecord
         ];
     }
     
-    public function getActivities()
+    public function getActivities($key = false)
     {
-        return [
+        $arr = [
             0 => 'профилактика социального сиротства, поддержка материнства и детства',
             1 => 'повышение качества жизни людей пожилого возраста',
             2 => 'социальная адаптация инвалидов и их семей',
@@ -71,11 +71,13 @@ class Nko extends \yii\easyii\components\ActiveRecord
             13 => 'целевой капитал',
             14 => 'ресурсные центры поддержки СО НКО'
         ];
+        
+        return $key !== false && is_numeric($key) ? $arr[$key] : $arr;
     }
     
-    public function getServices()
+    public function getServices($key = false)
     {
-        return [
+        $arr = [
             0 => 'социальная',
             1 => 'культурная',
             2 => 'здоровый образ жизни',
@@ -91,11 +93,13 @@ class Nko extends \yii\easyii\components\ActiveRecord
             12 => 'ветераны',
             13 => 'жилищно-коммунальное хозяйство'
         ];
+        
+        return $key !== false && is_numeric($key) ? $arr[$key] : $arr;
     }
     
-    public function getRecipients()
+    public function getRecipients($key = false)
     {
-        return [
+        $arr = [
             0 => 'дети (до 18 лет)',
             1 => 'дети с ОВЗ',
             2 => 'взрослые с ОВЗ',
@@ -107,11 +111,13 @@ class Nko extends \yii\easyii\components\ActiveRecord
             8 => 'женщины',
             9 => 'юридические лица'
         ];
+        
+        return $key !== false && is_numeric($key) ? $arr[$key] : $arr;
     }
     
-    public function getMember()
+    public function getMember($key = false)
     {
-        return [
+        $arr = [
             0 => 'здоровый образ жизни',
             1 => 'просвещение',
             2 => 'семья и дети',
@@ -120,10 +126,98 @@ class Nko extends \yii\easyii\components\ActiveRecord
             5 => 'добровольчество',
             6 => 'детские и молодёжные организации'
         ];
+        
+        return $key !== false && is_numeric(trim($key)) ? $arr[$key] : $arr;
     }
     
-    public static function findNko($op, $activities, $services, $pay, $recipients)
+    public function getPay($key = false)
     {
+        $arr = [
+            0 => 'Бесплатно',
+            1 => 'Платно',
+            2 => 'Платно/бесплатно'
+        ];
         
+        return $key !== false && is_numeric($key) ? $arr[$key] : $arr;
+    }
+    
+    public static function findNko($activities, $services, $pay, $recipients)
+    {
+        $model = new Nko;
+        $all = $model::find()->all();
+        $res = [];
+
+        foreach ($all as $key => $item) {
+            $itemActivities = explode(',', $item->activities);
+            $itemServices = explode(',', $item->services);
+            $itemRecipients = explode(',', $item->recipients);
+            if (($item->type == 1 || $item->type == 2) &&
+                ((is_array($activities) && count(array_intersect($itemActivities, $activities))) ||
+                (is_array($services) && count(array_intersect($itemServices, $services))) ||
+                (is_array($recipients) && count(array_intersect($itemRecipients, $recipients))) ||
+                $item->pay == $pay)) {
+                foreach ($itemActivities as &$i) {
+                    if (is_numeric($i))
+                        $i = $model->getActivities($i);
+                }
+                foreach ($itemServices as &$i) {
+                    if (is_numeric($i))
+                        $i = $model->getServices($i);
+                }
+                foreach ($itemRecipients as &$i) {
+                    if (is_numeric($i))
+                        $i = $model->getRecipients($i);
+                }
+                
+                $res[] = ['name' => $item->name,
+                          'activities' => implode(', ', $itemActivities),
+                          'services' => implode(', ', $itemServices),
+                          'pay' => $model->getPay($item->pay),
+                          'recipients' => implode(', ', $itemRecipients)
+                         ];
+            }
+        }
+        
+        return $res;
+    }
+    
+    public static function findNkobl($activities, $member, $pay, $recipients)
+    {
+        $model = new Nko;
+        $all = $model::find()->all();
+        $res = [];
+
+        foreach ($all as $key => $item) {
+            $itemActivities = explode(',', $item->activities);
+            $itemMember = explode(',', $item->member);
+            $itemRecipients = explode(',', $item->recipients);
+            if (($item->type == 0 || $item->type == 2) &&
+                ((is_array($activities) && count(array_intersect($itemActivities, $activities))) ||
+                (is_array($member) && count(array_intersect($itemMember, $member))) ||
+                (is_array($recipients) && count(array_intersect($itemRecipients, $recipients))) ||
+                $item->pay == $pay)) {
+                foreach ($itemActivities as &$i) {
+                    if (is_numeric($i))
+                        $i = $model->getActivities($i);
+                }
+                foreach ($itemMember as &$i) {
+                    if (is_numeric($i))
+                        $i = $model->getMember($i);
+                }
+                foreach ($itemRecipients as &$i) {
+                    if (is_numeric($i))
+                        $i = $model->getRecipients($i);
+                }
+                
+                $res[] = ['name' => $item->name,
+                          'activities' => implode(', ', $itemActivities),
+                          'member' => implode(', ', $itemMember),
+                          'pay' => $model->getPay($item->pay),
+                          'recipients' => implode(', ', $itemRecipients)
+                         ];
+            }
+        }
+        
+        return $res;
     }
 }
