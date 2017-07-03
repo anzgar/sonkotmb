@@ -155,8 +155,8 @@ class Nko extends \yii\easyii\components\ActiveRecord
             $itemServices = explode(',', $item->services);
             if (($item->type == 1 || $item->type == 2) &&
                 (!$name || strpos($item->name, $name) !== FALSE) &&
-                (!count($activities) || count(array_intersect($itemActivities, $activities))) &&
-                (!count($services) || count(array_intersect($itemServices, $services))) &&
+                (!is_array($activities) || !count($activities) || count(array_intersect($itemActivities, $activities))) &&
+                (!is_array($services) || !count($services) || count(array_intersect($itemServices, $services))) &&
                 $item->pay == $pay) {
                 foreach ($itemActivities as &$i) {
                     if (is_numeric($i))
@@ -183,16 +183,18 @@ class Nko extends \yii\easyii\components\ActiveRecord
         $model = new Nko;
         $all = $model::find()->all();
         $res = [];
+        
+        $activities = json_decode($activities);
 
         foreach ($all as $key => $item) {
             $itemActivities = explode(',', $item->activities);
             $itemMember = explode(',', $item->member);
             $itemRecipients = explode(',', $item->recipients);
             if (($item->type == 0 || $item->type == 2) &&
-                ($name && strpos($item->name, $name) !== FALSE) &&
-                ((is_array($activities) && count(array_intersect($itemActivities, $activities))) &&
-                (is_array($recipients) && count(array_intersect($itemRecipients, $recipients))) &&
-                (is_array($member) && count(array_intersect($itemMember, $member))))) {
+                (!$name || strpos($item->name, $name) !== FALSE) &&
+                (!is_array($activities) || !count($activities) || count(array_intersect($itemActivities, $activities))) &&
+                (!is_array($recipients) || !count($recipients) || count(array_intersect($itemRecipients, $recipients))) &&
+                (!is_array($member) || !count($member) || count(array_intersect($itemMember, $member)))) {
                 foreach ($itemActivities as &$i) {
                     if (is_numeric($i))
                         $i = $model->getActivities($i);
@@ -209,7 +211,6 @@ class Nko extends \yii\easyii\components\ActiveRecord
                 $res[] = ['name' => $item->name,
                           'activities' => implode(', ', $itemActivities),
                           'member' => implode(', ', $itemMember),
-                          'pay' => $model->getPay($item->pay),
                           'recipients' => implode(', ', $itemRecipients)
                          ];
             }

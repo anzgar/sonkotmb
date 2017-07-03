@@ -293,4 +293,25 @@ class SiteController extends Controller
         $this->view->title = 'Регистрация НКО на мероприятие';
         return $this->render('takepart');
     }
+    
+    public function actionResource()
+    {
+        if ($post = \Yii::$app->request->post()) {
+            $htmlMail .= 'НКО: '.$post['nko'].'<br />';
+            $htmlMail .= 'Вопрос: '.$post['question'].'<br />';
+            $htmlMail .= 'Контакты: '.$post['contacts'].'<br />';
+            
+            if (\Yii::$app->mailer->compose()
+                ->setFrom('robot@sonkotmb.ru')
+                ->setTo('winterwar@yandex.ru')
+                ->setSubject('Sonkotmb: Ресурсный центр')
+                ->setHtmlBody($htmlMail)
+                ->send())
+                die('ok');
+            else
+                die('Ошибка отправки');
+        }
+        $this->view->title = 'Ресурсный центр: оставить заявку';
+        return $this->render('resource');
+    }
 }

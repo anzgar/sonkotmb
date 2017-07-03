@@ -112,7 +112,7 @@ use yii\helpers\Url;
         <!-- Модуль информации -->
         <div class="module-after-middle-content">
             <div>
-                <a href="http://sonkotmb.ru/site/page/4"><img src="/design/img/main_after_content_pic.jpg" /></a>
+                <a href="http://sonkotmb.ru/site/resource"><img src="/design/img/main_after_content_pic.jpg" /></a>
                 <a href="/site/idea" class="gradient-btn btn2">Предложите идею</a>
             </div>
             <div>
