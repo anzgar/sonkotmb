@@ -221,7 +221,7 @@ class SiteController extends Controller
     
     public function actionStepdb()
     {
-        $this->view->title = 'База данных СО НКО, оказывающих социальные услуги';
+        $this->view->title = 'Сведения о СО НКО';
         return $this->render('stepdb', [
             'model' => new Nko
         ]);
@@ -229,7 +229,7 @@ class SiteController extends Controller
     
     public function actionNkobl()
     {
-        $this->view->title = 'База данных НКО области';
+        $this->view->title = 'База СО НКО области';
         return $this->render('nkobl', [
             'model' => new Nko
         ]);
@@ -239,16 +239,16 @@ class SiteController extends Controller
     {
         return \Yii::$app->request->post('type') ?
             json_encode(Nko::findNko(    //1 - поэтапный
+                \Yii::$app->request->post('name'),
                 \Yii::$app->request->post('activities'),
                 \Yii::$app->request->post('services'),
-                \Yii::$app->request->post('pay'),
-                \Yii::$app->request->post('recipients')
+                \Yii::$app->request->post('pay')
             )) :
             json_encode(Nko::findNkobl(   //0 - бд нко
+                \Yii::$app->request->post('name'),
                 \Yii::$app->request->post('activities'),
-                \Yii::$app->request->post('member'),
-                \Yii::$app->request->post('pay'),
-                \Yii::$app->request->post('recipients')
+                \Yii::$app->request->post('recipients'),
+                \Yii::$app->request->post('member')
             ));
     }
     

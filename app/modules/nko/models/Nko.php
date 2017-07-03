@@ -141,21 +141,23 @@ class Nko extends \yii\easyii\components\ActiveRecord
         return $key !== false && is_numeric($key) ? $arr[$key] : $arr;
     }
     
-    public static function findNko($activities, $services, $pay, $recipients)
+    public static function findNko($name, $activities, $services, $pay)
     {
         $model = new Nko;
         $all = $model::find()->all();
         $res = [];
+        
+        $activities = json_decode($activities);
+        //$services = json_decode($services);
 
         foreach ($all as $key => $item) {
             $itemActivities = explode(',', $item->activities);
             $itemServices = explode(',', $item->services);
-            $itemRecipients = explode(',', $item->recipients);
             if (($item->type == 1 || $item->type == 2) &&
-                ((is_array($activities) && count(array_intersect($itemActivities, $activities))) ||
-                (is_array($services) && count(array_intersect($itemServices, $services))) ||
-                (is_array($recipients) && count(array_intersect($itemRecipients, $recipients))) ||
-                $item->pay == $pay)) {
+                (!$name || strpos($item->name, $name) !== FALSE) &&
+                (!count($activities) || count(array_intersect($itemActivities, $activities))) &&
+                (!count($services) || count(array_intersect($itemServices, $services))) &&
+                $item->pay == $pay) {
                 foreach ($itemActivities as &$i) {
                     if (is_numeric($i))
                         $i = $model->getActivities($i);
@@ -164,16 +166,11 @@ class Nko extends \yii\easyii\components\ActiveRecord
                     if (is_numeric($i))
                         $i = $model->getServices($i);
                 }
-                foreach ($itemRecipients as &$i) {
-                    if (is_numeric($i))
-                        $i = $model->getRecipients($i);
-                }
                 
                 $res[] = ['name' => $item->name,
                           'activities' => implode(', ', $itemActivities),
                           'services' => implode(', ', $itemServices),
-                          'pay' => $model->getPay($item->pay),
-                          'recipients' => implode(', ', $itemRecipients)
+                          'pay' => $model->getPay($item->pay)
                          ];
             }
         }
@@ -181,7 +178,7 @@ class Nko extends \yii\easyii\components\ActiveRecord
         return $res;
     }
     
-    public static function findNkobl($activities, $member, $pay, $recipients)
+    public static function findNkobl($name, $activities, $recipients, $member)
     {
         $model = new Nko;
         $all = $model::find()->all();
@@ -192,10 +189,10 @@ class Nko extends \yii\easyii\components\ActiveRecord
             $itemMember = explode(',', $item->member);
             $itemRecipients = explode(',', $item->recipients);
             if (($item->type == 0 || $item->type == 2) &&
-                ((is_array($activities) && count(array_intersect($itemActivities, $activities))) ||
-                (is_array($member) && count(array_intersect($itemMember, $member))) ||
-                (is_array($recipients) && count(array_intersect($itemRecipients, $recipients))) ||
-                $item->pay == $pay)) {
+                ($name && strpos($item->name, $name) !== FALSE) &&
+                ((is_array($activities) && count(array_intersect($itemActivities, $activities))) &&
+                (is_array($recipients) && count(array_intersect($itemRecipients, $recipients))) &&
+                (is_array($member) && count(array_intersect($itemMember, $member))))) {
                 foreach ($itemActivities as &$i) {
                     if (is_numeric($i))
                         $i = $model->getActivities($i);

@@ -12,10 +12,10 @@
     'validateOnBlur' => false
 ]); ?>
 <div style="width:400px">
+<?= $form->field($model, 'name')->textInput(['class' => 'form-control', 'style' => 'height: 24px; padding: 6px 18px;']) ?>
 <?= $form->field($model, 'activities')->dropDownList($model->getActivities(), ['class' => 'form-control chosen', 'multiple' => true]) ?>
-<?= $form->field($model, 'member')->dropDownList($model->getMember(), ['class' => 'form-control chosen', 'multiple' => true]) ?>
-<?= $form->field($model, 'pay')->dropDownList([0 => 'Бесплатно', 1 => 'Платно', 2 => 'Платно/бесплатно'], ['class' => 'form-control chosen', 'style' => 'width:103%']) ?>
-<?= $form->field($model, 'recipients')->dropDownList($model->getRecipients(), ['class' => 'form-control chosen', 'multiple' => true]) ?>
+<?= $form->field($model, 'recipients')->dropDownList($model->getRecipients(), ['class' => 'form-control chosen', 'multiple' => true]) ?> 
+<?= $form->field($model, 'member')->dropDownList($model->getMember(), ['class' => 'form-control chosen', 'multiple' => true]) ?> 
 </div>
 <?= Html::submitButton('Найти', ['class' => 'btn btn-primary']) ?>
 <script>$('.chosen').chosen();</script>

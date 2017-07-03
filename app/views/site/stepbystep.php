@@ -4,7 +4,7 @@
             <td>
                 <div>
                     <img src="/design/img/poetapnyy_icon_1.png">
-                    <h3><a href="/site/stepdb">База данных СО НКО, оказывающих социальные услуги</a></h3>
+                    <h3><a href="/site/stepdb">Сведения о СО НКО</a></h3>
                 </div>
                 <div>
                     <img src="/design/img/poetapnyy_icon_2.png">
