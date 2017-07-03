@@ -60,4 +60,27 @@ $(function() {
           else alert(data);
         });
  });
+ 
+  $('#sendresource').click(function() {
+     if (!$('#nko').val()) {
+        alert('Не указано НКО');
+        return false;
+    }
+    if (!$('#contacts').val()) {
+        alert('Не указаны контакты');
+        return false;
+    }
+    if (!$('#question').val()) {
+        alert('Не указан вопрос');
+        return false;
+    }
+    $.post( "/site/resource", { fio: $('#nko').val(), phone: $('#contacts').val(), nko: $('#question').val(), _csrf: $('#_csrf').val() })
+        .done(function( data ) {
+          if (data === 'ok') {
+              alert('Спасибо за отправку!');
+              location.href = '/';
+          }
+          else alert(data);
+        });
+ });
 });
