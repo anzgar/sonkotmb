@@ -74,7 +74,7 @@ $(function() {
         alert('Не указан вопрос');
         return false;
     }
-    $.post( "/site/resource", { fio: $('#nko').val(), contacts: $('#contacts').val(), question: $('#question').val(), _csrf: $('#_csrf').val() })
+    $.post( "/site/resource", { nko: $('#nko').val(), contacts: $('#contacts').val(), question: $('#question').val(), _csrf: $('#_csrf').val() })
         .done(function( data ) {
           if (data === 'ok') {
               alert('Спасибо за отправку!');
