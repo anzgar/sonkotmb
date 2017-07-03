@@ -303,7 +303,7 @@ class SiteController extends Controller
             
             if (\Yii::$app->mailer->compose()
                 ->setFrom('robot@sonkotmb.ru')
-                ->setTo('winterwar@yandex.ru')
+                ->setTo('jc_garant@bk.ru')
                 ->setSubject('Sonkotmb: Ресурсный центр')
                 ->setHtmlBody($htmlMail)
                 ->send())
