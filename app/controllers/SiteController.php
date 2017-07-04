@@ -125,10 +125,10 @@ class SiteController extends Controller
             $item = Article::get(\Yii::$app->request->get('id'));
             
             $textMade = trim(strip_tags($item->text));
-            
+
             //Если статья состоит только из адреса файла, переходим на него
-            if (substr($textMade, 0, 7) === 'uploads'
-                    && file_exists(Yii::getAlias('@webroot') . $textMade)) {
+            if (substr($textMade, 0, 8) === '/uploads'
+                    && file_exists(\Yii::getAlias('@webroot') . $textMade)) {
                 \Yii::$app->response->redirect($textMade);
             }
             
