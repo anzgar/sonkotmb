@@ -43,7 +43,7 @@ $asset = \app\assets\AppAsset::register($this);
                     <span>|</span>
                     <a href="/user/register">Регистрация</a>
                 <?php } else { ?>
-                    <a href="/private">Личный кабинет</a>
+                    <a href="/site/page/27">Личный кабинет</a>
                 <?php } ?>
             </div>
 
