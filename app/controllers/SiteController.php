@@ -124,6 +124,14 @@ class SiteController extends Controller
         if (\Yii::$app->request->get('id')) {
             $item = Article::get(\Yii::$app->request->get('id'));
             
+            $textMade = trim(strip_tags($item->text));
+
+            //Если статья состоит только из адреса файла, переходим на него
+            if (substr($textMade, 0, 8) === '/uploads'
+                    && file_exists(\Yii::getAlias('@webroot') . $textMade)) {
+                \Yii::$app->response->redirect($textMade);
+            }
+            
             $this->view->title = $item->title;
             
             $category = Article::cat($item->category_id);
