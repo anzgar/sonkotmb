@@ -19,8 +19,8 @@ function showCategory($category) {
 <?php
 foreach ($category->children as $key => $child) {
     ?>
-        <td<?php if (!($key % 2) && $key == count($category->children)-1) { ?>
-            colspan="2"
+        <td<?php if (!($key % 3) && $key == count($category->children)-1) { ?>
+            colspan="3"
             <?php } ?>>
             <?php if (!count($child->children)) {
                 ?><h3><a href="/site/category/<?=$child->category_id?>"><?=$child->title?></a></h3>
@@ -31,7 +31,7 @@ foreach ($category->children as $key => $child) {
             ?>
         </td>
     <?php
-    if ($key % 2) {
+    if ($key % 3) {
         ?></tr><tr><?php
     }
 }
