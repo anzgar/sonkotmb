@@ -31,7 +31,7 @@ foreach ($category->children as $key => $child) {
             ?>
         </td>
     <?php
-    if ($key % 3) {
+    if ($key && !($key % 3)) {
         ?></tr><tr><?php
     }
 }
