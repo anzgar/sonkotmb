@@ -21,7 +21,7 @@ foreach ($category->children as $key => $child) {
     ?>
         <td<?php if (!($key % 3) && $key == count($category->children)-1) { ?>
             colspan="3"
-            <?php } ?>>
+            <?php } ?> width="33%">
             <?php if (!count($child->children)) {
                 ?><h3><a href="/site/category/<?=$child->category_id?>"><?=$child->title?></a></h3>
             <?php } else {

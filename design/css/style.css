@@ -126,7 +126,7 @@ label {margin-bottom: 0 !important; font-weight: normal !important; }
 
 /* Аккордеон в отчётах */
 .otchety{width:100%;border-spacing:10px 0;}
-.otchety td{width:50%;background:#eee;padding:10px;vertical-align:top;}
+.otchety td{width:33%;background:#eee;padding:10px;vertical-align:top;}
 .otchety h3{margin:0 0 10px 0;font-family:'headers';color:#0948ac;font-size:20px;text-align:center;}
 .otchety td ul{list-style:none;margin:0;padding:0;text-align:center;font-family: 'gothic';color:#858585;}
 .otchety td li{cursor:pointer;display:block;}
