@@ -70,7 +70,7 @@ use yii\helpers\Url;
                         <h2><a href="/site/article/<?=$adv['item_id']?>"><?=$adv['title']?></a></h2>
 
                         <div class="article-preview">
-                            <img style="width:245px; width:auto \9;" src="<?php if (!$img = $adv['image']) {
+                            <img style="height:245px;" src="<?php if (!$img = $adv['image']) {
                                 $img = '/design/img/news_slider_none_photo.jpg';
                             } echo $img; ?>" />
                             <div>
