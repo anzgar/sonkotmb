@@ -64,13 +64,13 @@ use yii\helpers\Url;
             <div class="tabs-container">
                 <input type="radio" name="tab" checked="checked" id="tab-1" /><label for="tab-1">Объявления</label>
                 <input type="radio" name="tab" id="tab-2" /><label for="tab-2">Интервью</label>
-                <input type="radio" name="tab" id="tab-3" /><label for="tab-3">Форум</label>
+                <input type="radio" name="tab" id="tab-3" onclick="location.href='/podium'" /><label for="tab-3">Форум</label>
                 <div>
                     <div class="interview-container">
                         <h2><a href="/site/article/<?=$adv['item_id']?>"><?=$adv['title']?></a></h2>
 
                         <div class="article-preview">
-                            <img style="width:245px;" src="<?php if (!$img = $adv['image']) {
+                            <img style="width:245px; width:auto \9;" src="<?php if (!$img = $adv['image']) {
                                 $img = '/design/img/news_slider_none_photo.jpg';
                             } echo $img; ?>" />
                             <div>
