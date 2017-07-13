@@ -116,7 +116,7 @@ use yii\helpers\Url;
                 <a href="/site/idea" class="gradient-btn btn2">Предложите идею</a>
             </div>
             <div>
-                <h2>Поддержите проект НКО</h2>
+                <h2><a href="/site/category/54">Поддержите проект НКО</a></h2>
                 <!--<h3>Установка памятника тамбовскому волку</h3>
                 <div>
                     <img src="/design/img/news_slider_none_photo.jpg">

@@ -29,10 +29,10 @@ $asset = \app\assets\AppAsset::register($this);
     <div class="template-row header">
         <div class="template-position">
             <!-- Модуль заднего плана в хидере -->
-            <div class="module-header-background"></div>
+            <div class="module-header-background" style="cursor:pointer;" onclick="location.href='/'"></div>
             <!-- Модуль логотипа в хидере -->
             <div class="module-header-logo">
-                <a href="/"><img src="/design/img/top_logo.png"></a>
+                <a href="/site/nkobl/"><img src="/design/img/top_logo.png"></a>
             </div>
             <!-- Модуль логина в хидере -->
             <div class="module-header-login">
