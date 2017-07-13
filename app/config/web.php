@@ -30,7 +30,8 @@ $config = [
                 'cache' => [
                     'class' => 'yii\caching\FileCache',
                 ]
-            ]
+            ],
+            'userNameField' => 'username'
         ],
     ],
     'components' => [
