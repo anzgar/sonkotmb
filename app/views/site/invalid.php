@@ -7,7 +7,7 @@
     </tr>
     <tr>
         <td><img src="/design/img/without_widgets_icon_1.png">
-            <h3><a href="/site/page/20">Благотворительные фонды</a></h3></td>
+            <h3><a href="/site/page/20">Необходима помощь</a></h3></td>
         <td><img src="/design/img/without_widgets_icon_3.png"></td>
         <td>
             <h3><a href="/site/page/19">Лучшие практики</a></h3></td>
