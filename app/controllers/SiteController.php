@@ -36,11 +36,14 @@ class SiteController extends Controller
                         'where' => ['category_id' => 4],
                     ])[0];
         
+        $forums = \Yii::$app->db->createCommand('SELECT * FROM podium_forum')->query();
+        
         return $this->render('index', [
             'news' => $news,
             'support' => Page::get(5),
             'adv' => $adv,
-            'interview' => $interview
+            'interview' => $interview,
+            'forums' => $forums
         ]);
     }
     

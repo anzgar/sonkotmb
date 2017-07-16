@@ -64,7 +64,7 @@ use yii\helpers\Url;
             <div class="tabs-container">
                 <input type="radio" name="tab" checked="checked" id="tab-1" /><label for="tab-1">Объявления</label>
                 <input type="radio" name="tab" id="tab-2" /><label for="tab-2">Интервью</label>
-                <input type="radio" name="tab" id="tab-3" onclick="location.href='/podium'" /><label for="tab-3">Форум</label>
+                <input type="radio" name="tab" id="tab-3" /><label for="tab-3">Форум</label>
                 <div>
                     <div class="interview-container">
                         <h2><a href="/site/article/<?=$adv['item_id']?>"><?=$adv['title']?></a></h2>
@@ -97,7 +97,13 @@ use yii\helpers\Url;
                     </div>
                 </div>
                 <div>
-                    ...форум
+                    <ul>
+                    <?php
+                        foreach ($forums as $forum) {
+                            ?><li><a href="/podium/<?=$forum['category_id']?>/<?=$forum['id']?>/<?=$forum['slug']?>"><?=$forum['name']?></a></li><?php
+                        }
+                    ?>
+                    </ul>
                 </div>
             </div>
             <a href="/site/takepart" class="gradient-btn btn1">Регистрация НКО на мероприятие</a>
