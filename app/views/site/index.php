@@ -100,7 +100,7 @@ use yii\helpers\Url;
                     <ul>
                     <?php
                         foreach ($forums as $forum) {
-                            ?><li><a href="/podium/<?=$forum['category_id']?>/<?=$forum['id']?>/<?=$forum['slug']?>"><?=$forum['name']?></a></li><?php
+                            ?><li><a href="/podium/forum/<?=$forum['category_id']?>/<?=$forum['id']?>/<?=$forum['slug']?>"><?=$forum['name']?></a></li><?php
                         }
                     ?>
                     </ul>
