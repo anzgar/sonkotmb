@@ -287,9 +287,8 @@ class SiteController extends Controller
                     ->setHtmlBody($htmlMail)
                     ->send())
                         die('Ошибка отправки');
-                
-                die('ok');
             }
+            die('ok');
         }
         $this->view->title = 'Предложите свою идею';
         return $this->render('idea');
@@ -319,9 +318,9 @@ class SiteController extends Controller
                     ->setHtmlBody($htmlMail)
                     ->send())
                         die('Ошибка отправки');
-                
-                die('ok');
             }
+            
+            die('ok');
         }
         $this->view->title = 'Регистрация НКО на мероприятие';
         
