@@ -30,6 +30,7 @@
                 activities: JSON.stringify($('#findform select#nko-activities').val()),
                 services: $('#findform select#nko-services').val(),
                 pay: $('#findform select#nko-pay').val(),
+                name: $('#findform input#nko-name').val(),
                 recipients: $('#findform select#nko-recipients').val()
             },
             success: function(info) {

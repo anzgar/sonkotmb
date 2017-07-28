@@ -154,7 +154,7 @@ class Nko extends \yii\easyii\components\ActiveRecord
             $itemActivities = explode(',', $item->activities);
             $itemServices = explode(',', $item->services);
             if (($item->type == 1 || $item->type == 2) &&
-                (!$name || strpos($item->name, $name) !== FALSE) &&
+                (!$name || strpos(mb_strtolower($item->name), mb_strtolower($name)) !== FALSE) &&
                 (!is_array($activities) || !count($activities) || count(array_intersect($itemActivities, $activities))) &&
                 (!is_array($services) || !count($services) || count(array_intersect($itemServices, $services))) &&
                 $item->pay == $pay) {
@@ -191,7 +191,7 @@ class Nko extends \yii\easyii\components\ActiveRecord
             $itemMember = explode(',', $item->member);
             $itemRecipients = explode(',', $item->recipients);
             if (($item->type == 0 || $item->type == 2) &&
-                (!$name || strpos($item->name, $name) !== FALSE) &&
+                (!$name || strpos(mb_strtolower($item->name), mb_strtolower($name)) !== FALSE) &&
                 (!is_array($activities) || !count($activities) || count(array_intersect($itemActivities, $activities))) &&
                 (!is_array($recipients) || !count($recipients) || count(array_intersect($itemRecipients, $recipients))) &&
                 (!is_array($member) || !count($member) || count(array_intersect($itemMember, $member)))) {

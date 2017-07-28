@@ -7,6 +7,11 @@
     </p>
     <hr />
     <p>
+        <?php if (isset($showReg) && $showReg) { ?>
+        <b><a href="/site/takepart?id=<?=$item->id?>">Зарегистрироваться на мероприятие</a></b>
+        <?php } ?>
+    </p>
+    <p>
         Дата публикации: <?=date('d.m.Y', $item->time)?>
     </p>
 </div>

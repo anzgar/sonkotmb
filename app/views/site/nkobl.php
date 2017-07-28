@@ -29,6 +29,7 @@
                 type: 0,
                 activities: JSON.stringify($('#findform select#nko-activities').val()),
                 member: $('#findform select#nko-member').val(),
+                name: $('#findform input#nko-name').val(),
                 pay: $('#findform select#nko-pay').val(),
                 recipients: $('#findform select#nko-recipients').val()
             },

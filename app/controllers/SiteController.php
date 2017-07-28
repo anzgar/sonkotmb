@@ -144,7 +144,8 @@ class SiteController extends Controller
             $this->view->params['bread']['/site/article/'.$item->id] = $item->title;
             
             return $this->render('newsItem', [
-                'item' => $item
+                'item' => $item,
+                'showReg' => $item->category_id == 7 ? 1 : 0
             ]);
         }
     }
@@ -272,7 +273,7 @@ class SiteController extends Controller
             
             if (\Yii::$app->mailer->compose()
                 ->setFrom('robot@sonkotmb.ru')
-                ->setTo(Setting::get('admin_email'))
+                ->setTo('jc_garant@bk.ru,sav@publ.tambov.gov.ru,winterwar@yandex.ru,roa@publ.tambov.gov.ru,bdv@publ.tambov.gov.ru')
                 ->setSubject('Sonkotmb: идея')
                 ->setHtmlBody($htmlMail)
                 ->send())
@@ -287,13 +288,14 @@ class SiteController extends Controller
     public function actionTakepart()
     {
         if ($post = \Yii::$app->request->post()) {
-            $htmlMail = 'Имя: '.$post['fio'].'<br />';
+            $htmlMail = 'Мероприятие: '.$post['venue'].'<br />';
+            $htmlMail .= 'Имя: '.$post['fio'].'<br />';
             $htmlMail .= 'Телефон: '.$post['phone'].'<br />';
             $htmlMail .= 'НКО: '.$post['nko'].'<br />';
             
             if (\Yii::$app->mailer->compose()
                 ->setFrom('robot@sonkotmb.ru')
-                ->setTo(Setting::get('admin_email'))
+                ->setTo('jc_garant@bk.ru,winterwar@yandex.ru,sav@publ.tambov.gov.ru,roa@publ.tambov.gov.ru,bdv@publ.tambov.gov.ru')
                 ->setSubject('Sonkotmb: регистрация НКО на мероприятие')
                 ->setHtmlBody($htmlMail)
                 ->send())
@@ -302,7 +304,14 @@ class SiteController extends Controller
                 die('Ошибка отправки');
         }
         $this->view->title = 'Регистрация НКО на мероприятие';
-        return $this->render('takepart');
+        
+        $items = Article::items([
+            'where' => ['category_id' => 7],
+        ]);
+//        die(print_r($items));
+        return $this->render('takepart', [
+            'items' => $items
+        ]);
     }
     
     public function actionResource()
