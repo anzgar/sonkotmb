@@ -280,15 +280,15 @@ class SiteController extends Controller
             ];
             
             foreach ($toAddrs as $addr) {
-                if (\Yii::$app->mailer->compose()
+                if (!\Yii::$app->mailer->compose()
                     ->setFrom('robot@sonkotmb.ru')
                     ->setTo($addr)
                     ->setSubject('Sonkotmb: идея')
                     ->setHtmlBody($htmlMail)
                     ->send())
-                    die('ok');
-                else
-                    die('Ошибка отправки');
+                        die('Ошибка отправки');
+                
+                die('ok');
             }
         }
         $this->view->title = 'Предложите свою идею';
@@ -312,15 +312,15 @@ class SiteController extends Controller
             ];
             
             foreach ($toAddrs as $addr) {
-                if (\Yii::$app->mailer->compose()
+                if (!\Yii::$app->mailer->compose()
                     ->setFrom('robot@sonkotmb.ru')
                     ->setTo($addr)
                     ->setSubject('Sonkotmb: регистрация НКО на мероприятие')
                     ->setHtmlBody($htmlMail)
                     ->send())
-                    die('ok');
-                else
-                    die('Ошибка отправки');
+                        die('Ошибка отправки');
+                
+                die('ok');
             }
         }
         $this->view->title = 'Регистрация НКО на мероприятие';
