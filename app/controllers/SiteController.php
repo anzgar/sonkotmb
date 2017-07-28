@@ -271,15 +271,25 @@ class SiteController extends Controller
             $htmlMail .= 'Телефон: '.$post['phone'].'<br />';
             $htmlMail .= 'Идея: '.$post['idea'].'<br />';
             
-            if (\Yii::$app->mailer->compose()
-                ->setFrom('robot@sonkotmb.ru')
-                ->setTo('jc_garant@bk.ru,sav@publ.tambov.gov.ru,winterwar@yandex.ru,roa@publ.tambov.gov.ru,bdv@publ.tambov.gov.ru')
-                ->setSubject('Sonkotmb: идея')
-                ->setHtmlBody($htmlMail)
-                ->send())
-                die('ok');
-            else
-                die('Ошибка отправки');
+            $toAddrs = [
+                'jc_garant@bk.ru',
+                'winterwar@yandex.ru',
+                'sav@publ.tambov.gov.ru',
+                'roa@publ.tambov.gov.ru',
+                'bdv@publ.tambov.gov.ru'
+            ];
+            
+            foreach ($toAddrs as $addr) {
+                if (\Yii::$app->mailer->compose()
+                    ->setFrom('robot@sonkotmb.ru')
+                    ->setTo($addr)
+                    ->setSubject('Sonkotmb: идея')
+                    ->setHtmlBody($htmlMail)
+                    ->send())
+                    die('ok');
+                else
+                    die('Ошибка отправки');
+            }
         }
         $this->view->title = 'Предложите свою идею';
         return $this->render('idea');
@@ -293,15 +303,25 @@ class SiteController extends Controller
             $htmlMail .= 'Телефон: '.$post['phone'].'<br />';
             $htmlMail .= 'НКО: '.$post['nko'].'<br />';
             
-            if (\Yii::$app->mailer->compose()
-                ->setFrom('robot@sonkotmb.ru')
-                ->setTo('jc_garant@bk.ru,winterwar@yandex.ru,sav@publ.tambov.gov.ru,roa@publ.tambov.gov.ru,bdv@publ.tambov.gov.ru')
-                ->setSubject('Sonkotmb: регистрация НКО на мероприятие')
-                ->setHtmlBody($htmlMail)
-                ->send())
-                die('ok');
-            else
-                die('Ошибка отправки');
+            $toAddrs = [
+                'jc_garant@bk.ru',
+                'winterwar@yandex.ru',
+                'sav@publ.tambov.gov.ru',
+                'roa@publ.tambov.gov.ru',
+                'bdv@publ.tambov.gov.ru'
+            ];
+            
+            foreach ($toAddrs as $addr) {
+                if (\Yii::$app->mailer->compose()
+                    ->setFrom('robot@sonkotmb.ru')
+                    ->setTo($addr)
+                    ->setSubject('Sonkotmb: регистрация НКО на мероприятие')
+                    ->setHtmlBody($htmlMail)
+                    ->send())
+                    die('ok');
+                else
+                    die('Ошибка отправки');
+            }
         }
         $this->view->title = 'Регистрация НКО на мероприятие';
         

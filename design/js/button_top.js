@@ -39,7 +39,11 @@ $(function() {
  });
  
  $('#sendtakepart').click(function() {
-     if (!$('#fio').val()) {
+    if (!$('#venue').val()) {
+        alert('Не указано мероприятие');
+        return false;
+    }
+    if (!$('#fio').val()) {
         alert('Не указано ФИО');
         return false;
     }
@@ -51,7 +55,7 @@ $(function() {
         alert('Не указано наименование НКО');
         return false;
     }
-    $.post( "/site/takepart", { fio: $('#fio').val(), phone: $('#phone').val(), nko: $('#nko').val(), _csrf: $('#_csrf').val() })
+    $.post( "/site/takepart", { venue: $('#venue').val(), fio: $('#fio').val(), phone: $('#phone').val(), nko: $('#nko').val(), _csrf: $('#_csrf').val() })
         .done(function( data ) {
           if (data === 'ok') {
               alert('Спасибо за отправку!');
