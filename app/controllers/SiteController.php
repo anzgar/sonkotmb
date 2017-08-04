@@ -38,12 +38,18 @@ class SiteController extends Controller
         
         $forums = \Yii::$app->db->createCommand('SELECT * FROM podium_forum')->query();
         
+        $tab4 = \Yii::$app->db->createCommand('SELECT title,text FROM easyii_pages WHERE page_id=29')->query()->read();
+        
+        $tab5 = \Yii::$app->db->createCommand('SELECT title,text FROM easyii_pages WHERE page_id=30')->query()->read();
+        
         return $this->render('index', [
             'news' => $news,
             'support' => Page::get(5),
             'adv' => $adv,
             'interview' => $interview,
-            'forums' => $forums
+            'forums' => $forums,
+            'tab4' => $tab4,
+            'tab5' => $tab5,
         ]);
     }
     

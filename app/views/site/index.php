@@ -65,6 +65,8 @@ use yii\helpers\Url;
                 <input type="radio" name="tab" checked="checked" id="tab-1" /><label for="tab-1">Объявления</label>
                 <input type="radio" name="tab" id="tab-2" /><label for="tab-2">Интервью</label>
                 <input type="radio" name="tab" id="tab-3" /><label for="tab-3">Форум</label>
+                <input type="radio" name="tab" id="tab-4" /><label for="tab-4"><?=$tab4['title']?></label>
+                <input type="radio" name="tab" id="tab-5" /><label for="tab-5"><?=$tab5['title']?></label>
                 <div>
                     <div class="interview-container">
                         <h2><a href="/site/article/<?=$adv['item_id']?>"><?=$adv['title']?></a></h2>
@@ -104,6 +106,16 @@ use yii\helpers\Url;
                         }
                     ?>
                     </ul>
+                </div>
+                <div>
+                    <div class="interview-container">
+                        <?=$tab4['text']?>
+                    </div>
+                </div>
+                <div>
+                    <div class="interview-container">
+                        <?=$tab5['text']?>
+                    </div>
                 </div>
             </div>
             <a href="/site/takepart" class="gradient-btn btn1">Регистрация НКО на мероприятие</a>
