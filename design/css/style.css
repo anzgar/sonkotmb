@@ -77,6 +77,24 @@ label {margin-bottom: 0 !important; font-weight: normal !important; }
 .module-news-slider .article-intro h3, .module-news-slider .article-intro h3 a{font-family:'gothic';color:#0948ac;font-size:16px;text-align:center;text-decoration:none;}
 .module-news-slider .article-intro .intro-text{font-family: 'gothic';color:#858585;text-align:justify;overflow:hidden;height:50px;}
 
+/*Проектный слайдер*/
+.news-slider{background:#f3f3f3;}
+.module-support-slider{position:relative;max-width:1000px;margin:0 auto;height:420px;}
+.module-support-slider>.slider{overflow:hidden;max-width:1000px;position:relative;margin:0 auto;padding:25px 0 10px 0;}
+.module-support-slider>.slider>ul{margin:0;padding:0;display:block;list-style:none;font-size:0;}
+.module-support-slider>.slider>ul>li{display:inline-block;width:265px;height:335px;font-size:14px;background: linear-gradient(135deg, #c7dc3a 0%,#ffffff 84%,#ffffff 100%);vertical-align: bottom;margin:0 20px;}
+.module-support-slider .arr_prev,.module-support-slider .arr_next{position:absolute;top:50%;margin-top:-20px;display:block;cursor:pointer;width:40px;height:40px;display:block;}
+.module-support-slider .arr_next{right:0;background:url(../img/news_slider_arrows.png) -40px 0;}
+.module-support-slider .arr_prev{left:0;background:url(../img/news_slider_arrows.png);}
+.module-support-slider .arr_next:hover{background:url(../img/news_slider_arrows.png) -40px -40px;}
+.module-support-slider .arr_prev:hover{background:url(../img/news_slider_arrows.png) 0 -40px;}
+.module-support-slider .article-intro{width:245px;height:315px;margin:10px;}
+.module-support-slider .article-intro .intro-image{/*height:200px;*/width:245px;max-height:200px;max-width:245px;}
+.module-support-slider .article-intro h3{margin:15px 0;}
+.module-support-slider .article-intro h3, .module-support-slider .article-intro h3 a{font-family:'gothic';color:#0948ac;font-size:16px;text-align:center;text-decoration:none;}
+.module-support-slider .article-intro .intro-text{font-family: 'gothic';color:#858585;text-align:justify;overflow:hidden;height:50px;}
+
+
 /*Заголовок страницы*/
 .page-header{background:#f3f3f3; margin:0 !important;}
 .module-page-header h1{font-family:'headers';color:#0948ac;font-size:30px;text-align:left;padding:20px 20px;margin:0 !important;}

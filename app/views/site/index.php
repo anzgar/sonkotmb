@@ -138,7 +138,7 @@ use yii\helpers\Url;
                 
                 <?php //$support->text ?>
                 
-                <div class="module-news-slider support">
+                <div class="module-support-slider">
                     <div class="slider">
                         <ul class="slide-container">
                             <?php
@@ -172,7 +172,7 @@ use yii\helpers\Url;
                 <script>
                     jQuery(window).load(function() {
                         realResponsiveSlider({
-                            slider: jQuery('.module-news-slider.support>.slider'),
+                            slider: jQuery('.module-support-slider>.slider'),
                             fixWidth: true,
                             slNum: 1
                         });
