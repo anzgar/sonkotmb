@@ -18,7 +18,7 @@ $asset = \app\assets\AppAsset::register($this);
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/design/css/style.css?id=<?=md5(microtime())?>">
     <script src="/design/js/jquery-2.1.4.min.js"></script>
-    <script src="/design/js/responciveSlider.js"></script>
+    <script src="/design/js/responciveSlider.js?id=<?=md5(microtime())?>"></script>
     <script src="/design/js/button_top.js?id=<?=md5(microtime())?>"></script>
     <?php $this->head() ?>
 </head>
