@@ -87,4 +87,23 @@ $(function() {
           else alert(data);
         });
  });
+ 
+ $('#sendfeedback').click(function() {
+    if (!$('#contacts').val()) {
+        alert('Не указаны контакты');
+        return false;
+    }
+    if (!$('#question').val()) {
+        alert('Не указан текст сообщения');
+        return false;
+    }
+    $.post( "/site/feedback", { contacts: $('#contacts').val(), question: $('#question').val(), _csrf: $('#_csrf').val() })
+        .done(function( data ) {
+          if (data === 'ok') {
+              alert('Спасибо за отправку!');
+              location.href = '/site/private';
+          }
+          else alert(data);
+        });
+ });
 });

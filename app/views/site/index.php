@@ -135,16 +135,49 @@ use yii\helpers\Url;
             </div>
             <div>
                 <h2><a href="/site/category/54">Поддержите проект НКО</a></h2>
-                <!--<h3>Установка памятника тамбовскому волку</h3>
-                <div>
-                    <img src="/design/img/news_slider_none_photo.jpg">
-                    <p class="descriptions">Красивая, опрятная с бантами ученица Опаздывала в школу, летела словно птица На красный свет пошла она Споткнулась и упал Поэтому не надо на дорогах торопиться</p>
-                    <p>
-                        Красивая, опрятная с бантами ученица Опаздывала в школу, летела словно птица На красный свет пошла она Споткнулась и упал Поэтому не надо на дорогах торопиться Красивая, опрятная с бантами ученица Опаздывала в школу, летела словно птица На красный свет
-                        пошла она Споткнулась и упал Поэтому не надо на дорогах торопиться
-                    </p>
-                </div>-->
-                <?=$support->text?>
+                
+                <?php //$support->text ?>
+                
+                <div class="module-news-slider support">
+                    <div class="slider">
+                        <ul class="slide-container">
+                            <?php
+                                foreach ($support as $item) {
+                                    if (!$img = $item->thumb('245', '200', 0)) {
+                                        $img = '/design/img/news_slider_none_photo.jpg';
+                                    }
+                                    ?>
+                                    <li class="slide">
+                                        <div class="article-intro">
+                                            <div class="intro-image">
+                                                <a href="/site/article/<?=$item->id?>"><img src="<?=$img?>"></a>
+                                            </div>
+                                            <h3><a href="/site/article/<?=$item->id?>"><?=$item->title?></a></h3>
+                                            <!--<div class="intro-text">
+
+                                                    <?php //echo $item->short ?>
+
+                                            </div>-->
+                                        </div>
+                                    </li>
+                                    <?php
+                                }
+                            ?>
+                        </ul>
+                    </div>
+                    <div class="arr_prev"></div>
+                    <div class="arr_next"></div>
+                </div>
+                <!-- Скрипт запускающий слайдер -->
+                <script>
+                    jQuery(window).load(function() {
+                        realResponsiveSlider({
+                            slider: jQuery('.module-news-slider.support>.slider'),
+                            fixWidth: true,
+                            slNum: 1
+                        });
+                    });
+                </script>
             </div>
         </div>
     </div>

@@ -3,7 +3,7 @@ function realResponsiveSlider(opt){
  var sliderW=slider.width();
  var slW=opt.fixWidth?jQuery('.slide',slider).outerWidth(true):slider.width();
  var slWMF=opt.fixWidth?jQuery('.slide',slider).width():slider.width();
- var slNum=Math.floor(sliderW/slW);
+ var slNum=opt.slNum?opt.slNum:Math.floor(sliderW/slW);
 
  for(var num=0;num<slNum;num++){
   jQuery('>.slide-container',slider).append(jQuery('>.slide-container>.slide:eq('+num+')',slider)[0].outerHTML);

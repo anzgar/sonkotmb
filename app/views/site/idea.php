@@ -1,3 +1,7 @@
+<?php if ($isGuest) { ?>
+Пожалуйста, зарегистрируйтесь или авторизуйтесь, чтобы предложить идею.
+<?php } else { ?>
+
 <form method="post">
     <p>
         ФИО:<br />
@@ -16,3 +20,4 @@
     </p>
     <input type="hidden" id="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
 </form>
+<?php } ?>

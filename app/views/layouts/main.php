@@ -42,7 +42,9 @@ $asset = \app\assets\AppAsset::register($this);
                     <span>|</span>
                     <a href="/user/register">Регистрация</a>
                 <?php } else { ?>
-                    <a href="/site/page/27">Личный кабинет</a>
+                    <a href="/site/private">Личный кабинет</a>
+                    <span>|</span>
+                    <a href="/admin/sign/out">Выход</a>
                 <?php } ?>
             </div>
         </div>
@@ -56,7 +58,7 @@ $asset = \app\assets\AppAsset::register($this);
                     <li><a href="/site/page/23">О нас</a></li>
                     <li><a href="/site/news/">Новости</a></li>
                     <li><a href="/site/category/7">Календарь мероприятий</a></li>
-                    <li><a href="/site/page/4">Ресурсные центры</a></li>
+                    <li><a href="/site/category/66">Ресурсные центры</a></li>
                     <li><a>Медиа</a>
                         <ul>
                             <li><a href="/site/photo">Фотографии</a></li>
@@ -117,7 +119,11 @@ $asset = \app\assets\AppAsset::register($this);
         <div class="template-position">
             <?= $content ?>
         </div>
-        <?php if ($_SERVER['REQUEST_URI'] != '/site/idea' && $_SERVER['REQUEST_URI'] != '/site/takepart') : ?>
+        <?php if ($_SERVER['REQUEST_URI'] != '/site/idea'
+                 && $_SERVER['REQUEST_URI'] != '/site/takepart'
+                 && $_SERVER['REQUEST_URI'] != '/site/ideas'
+                 && $_SERVER['REQUEST_URI'] != '/site/events'
+                 && $_SERVER['REQUEST_URI'] != '/site/private') : ?>
         <script type="text/javascript">(function(w,doc) {
                 if (!w.__utlWdgt ) {
                     w.__utlWdgt = true;

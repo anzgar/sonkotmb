@@ -10,6 +10,8 @@ use yii\easyii\modules\article\models\Category;
 use yii\easyii\modules\gallery\api\Gallery;
 use app\modules\nko\models\Nko;
 use yii\easyii\models\Setting;
+use app\models\Idea;
+use app\models\Event;
 
 class SiteController extends Controller
 {
@@ -42,9 +44,17 @@ class SiteController extends Controller
         
         $tab5 = \Yii::$app->db->createCommand('SELECT title,text FROM easyii_pages WHERE page_id=30')->query()->read();
         
+        $supportItems = \Yii::$app->db->createCommand('SELECT item_id FROM easyii_article_items WHERE category_id=54')->query();
+        $support = [];
+        
+        while ($si = $supportItems->read()) {
+            $support[] = Article::get($si['item_id']);
+        }
+        
         return $this->render('index', [
             'news' => $news,
-            'support' => Page::get(5),
+//            'support' => Page::get(5),
+            'support' => $support,
             'adv' => $adv,
             'interview' => $interview,
             'forums' => $forums,
@@ -81,6 +91,35 @@ class SiteController extends Controller
         ]);
     }
     
+    public function actionPrivate()
+    {
+        if (\Yii::$app->user->isGuest) {
+            return false;
+        }
+        
+        return $this->render('private');
+    }
+    
+    public function actionIdeas()
+    {
+        if (\Yii::$app->user->isGuest)
+            return false;
+        
+        return $this->render('ideas', [
+           'ideas' => Idea::find('user_id=:userId', ['userId' => \Yii::$app->user->id])->all()
+        ]);
+    }
+    
+    public function actionEvents()
+    {
+        if (\Yii::$app->user->isGuest)
+            return false;
+        
+        return $this->render('events', [
+           'events' => Event::find('user_id=:userId', ['userId' => \Yii::$app->user->id])->all()
+        ]);
+    }
+    
     public function actionCategory()
     {
         if (!\Yii::$app->request->get('id') || !$category = Article::cat(\Yii::$app->request->get('id'))) {
@@ -100,7 +139,9 @@ class SiteController extends Controller
             'pagination' => ['pageSize' => 6, 'page' => $page - 1]
         ]);
 
-        return $this->render('сategory', [
+        $view = \Yii::$app->request->get('id') == 66 ? 'resourceCenter' : 'category';
+        
+        return $this->render($view, [
             'articles' => $items,
             'pages' => Article::pages()
         ]);
@@ -271,7 +312,7 @@ class SiteController extends Controller
     }
     
     public function actionIdea()
-    {
+    {   
         if ($post = \Yii::$app->request->post()) {
             $htmlMail = 'Имя: '.$post['fio'].'<br />';
             $htmlMail .= 'Телефон: '.$post['phone'].'<br />';
@@ -279,7 +320,6 @@ class SiteController extends Controller
             
             $toAddrs = [
                 'jc_garant@bk.ru',
-                'winterwar@yandex.ru',
                 'sav@publ.tambov.gov.ru',
                 'roa@publ.tambov.gov.ru',
                 'bdv@publ.tambov.gov.ru'
@@ -294,10 +334,21 @@ class SiteController extends Controller
                     ->send())
                         die('Ошибка отправки');
             }
+            
+            $idea = new Idea;
+            $idea->user_id = \Yii::$app->user->id;
+            $idea->fio = $post['fio'];
+            $idea->phone = $post['phone'];
+            $idea->idea = $post['idea'];
+            $idea->save();
+            
             die('ok');
         }
         $this->view->title = 'Предложите свою идею';
-        return $this->render('idea');
+        
+        return $this->render('idea', [
+            'isGuest' => \Yii::$app->user->isGuest
+        ]);
     }
     
     public function actionTakepart()
@@ -310,7 +361,6 @@ class SiteController extends Controller
             
             $toAddrs = [
                 'jc_garant@bk.ru',
-                'winterwar@yandex.ru',
                 'sav@publ.tambov.gov.ru',
                 'roa@publ.tambov.gov.ru',
                 'bdv@publ.tambov.gov.ru'
@@ -325,17 +375,24 @@ class SiteController extends Controller
                     ->send())
                         die('Ошибка отправки');
             }
+           
+            $event = new Event;
+            $event->user_id = \Yii::$app->user->id;
+            $event->event = $post['venue'];
+            $event->fio = $post['fio'];
+            $event->phone = $post['phone'];
+            $event->nko = $post['nko'];
+            $event->save();
             
             die('ok');
         }
         $this->view->title = 'Регистрация НКО на мероприятие';
-        
-        $items = Article::items([
-            'where' => ['category_id' => 7],
-        ]);
-//        die(print_r($items));
+
         return $this->render('takepart', [
-            'items' => $items
+            'items' => Article::items([
+                        'where' => ['category_id' => 7],
+                    ]),
+            'isGuest' => \Yii::$app->user->isGuest
         ]);
     }
     
@@ -358,5 +415,25 @@ class SiteController extends Controller
         }
         $this->view->title = 'Ресурсный центр: оставить заявку';
         return $this->render('resource');
+    }
+    
+    public function actionFeedback()
+    {
+        if ($post = \Yii::$app->request->post()) {
+            $htmlMail = 'Текст: '.$post['question'].'<br />';
+            $htmlMail .= 'Контакты для ответа: '.$post['contacts'].'<br />';
+
+            if (\Yii::$app->mailer->compose()
+                ->setFrom('robot@sonkotmb.ru')
+                ->setTo('jc_garant@bk.ru')
+                ->setSubject('Sonkotmb: письмо от пользователя')
+                ->setHtmlBody($htmlMail)
+                ->send())
+                die('ok');
+            else
+                die('Ошибка отправки');
+        }
+        $this->view->title = 'Связь с администрацией';
+        return $this->render('feedback');
     }
 }
