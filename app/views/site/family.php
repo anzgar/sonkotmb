@@ -16,19 +16,7 @@
         <td></td>
         <td><img src="/design/img/without_widgets_icon_4-green.png"></td>
         <td>
-            <h3><a href="/site/page/17">НКО и проекты</a></h3></td>
+            <h3><a href="/site/page/17">НКО в сфере помощи семьям,<br />находящимся в трудной жизненной ситуации</a></h3>
+        </td>
     </tr>
 </table>
-
-<style>
-    .soc-adaptation {
-        width: 90%;
-    }
-
-    .soc-adaptation td {
-        text-align: center;
-        font-family: 'headers';
-        color: #0948ac;
-        font-size: 20px;
-    }
-</style>

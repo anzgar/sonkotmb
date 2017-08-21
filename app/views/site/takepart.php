@@ -1,7 +1,3 @@
-<?php if ($isGuest) { ?>
-Пожалуйста, зарегистрируйтесь или авторизуйтесь.
-<?php } else { ?>
-
 <form method="post">
     <p>
         Выбор мероприятия:<br />
@@ -32,5 +28,3 @@
     </p>
     <input type="hidden" id="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
 </form>
-
-<?php } ?>

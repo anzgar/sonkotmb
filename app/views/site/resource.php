@@ -16,3 +16,5 @@
     </p>
     <input type="hidden" id="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
 </form>
+<hr />
+<?=$page->text?>

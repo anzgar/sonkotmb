@@ -16,7 +16,8 @@
         <td></td>
         <td><img src="/design/img/without_widgets_icon_4.png"></td>
         <td>
-            <h3><a href="/site/page/21">НКО и проекты</a></h3></td>
+            <h3><a href="/site/page/21">НКО в сфере социальной адаптации<br />инвалидов и их семей</a></h3>
+        </td>
     </tr>
 </table>
 

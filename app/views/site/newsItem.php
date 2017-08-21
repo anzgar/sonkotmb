@@ -1,6 +1,6 @@
 <!-- Категория блога -->
 <div class="news-blog-category">
-    <h2><?=$item->title?></h2>
+    <!-- <h2><?=$item->title?></h2> -->
     <p class="newsItem">
         <img src="<?=$item->thumb('450', '350', 1)?>" />
         <?=$item->text?>
@@ -11,9 +11,11 @@
         <b><a href="/site/takepart?id=<?=$item->id?>">Зарегистрироваться на мероприятие</a></b>
         <?php } ?>
     </p>
+    <?php if (isset($showDate) && $showDate) { ?>
     <p>
         Дата публикации: <?=date('d.m.Y', $item->time)?>
     </p>
+    <?php } ?>
 </div>
 
 <!-- Правые виджеты -->

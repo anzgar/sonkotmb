@@ -47,6 +47,10 @@ class SiteController extends Controller
         $supportItems = \Yii::$app->db->createCommand('SELECT item_id FROM easyii_article_items WHERE category_id=54')->query();
         $support = [];
         
+        $tab4['title'] = 'Новости Общественной палаты';
+        
+        $tab5['title'] = 'Новости Минэкономразвития';
+        
         while ($si = $supportItems->read()) {
             $support[] = Article::get($si['item_id']);
         }
@@ -74,7 +78,8 @@ class SiteController extends Controller
             $this->view->params['bread']['/site/news/'.$item->id] = $item->title;
             
             return $this->render('newsItem', [
-                'item' => $item
+                'item' => $item,
+                'showDate' => true
             ]);
         }
         
@@ -141,6 +146,10 @@ class SiteController extends Controller
 
         $view = \Yii::$app->request->get('id') == 66 ? 'resourceCenter' : 'category';
         
+        if ($view == 'category' && count($items) == 1 && !$page) {
+            \Yii::$app->response->redirect('/site/article/'.$items[0]->id);
+        }
+        
         return $this->render($view, [
             'articles' => $items,
             'pages' => Article::pages()
@@ -192,7 +201,8 @@ class SiteController extends Controller
             
             return $this->render('newsItem', [
                 'item' => $item,
-                'showReg' => $item->category_id == 7 ? 1 : 0
+                'showReg' => $item->category_id == 7 ? true : false,
+                'showDate' => $item->category_id == 5 ? true : false
             ]);
         }
     }
@@ -376,13 +386,15 @@ class SiteController extends Controller
                         die('Ошибка отправки');
             }
            
-            $event = new Event;
-            $event->user_id = \Yii::$app->user->id;
-            $event->event = $post['venue'];
-            $event->fio = $post['fio'];
-            $event->phone = $post['phone'];
-            $event->nko = $post['nko'];
-            $event->save();
+            if (!\Yii::$app->user->isGuest && \Yii::$app->user->id) {
+                $event = new Event;
+                $event->user_id = \Yii::$app->user->id;
+                $event->event = $post['venue'];
+                $event->fio = $post['fio'];
+                $event->phone = $post['phone'];
+                $event->nko = $post['nko'];
+                $event->save();
+            }
             
             die('ok');
         }
@@ -413,8 +425,10 @@ class SiteController extends Controller
             else
                 die('Ошибка отправки');
         }
+        
         $this->view->title = 'Ресурсный центр: оставить заявку';
-        return $this->render('resource');
+        $page = Page::get(31);
+        return $this->render('resource', ['page' => $page]);
     }
     
     public function actionFeedback()

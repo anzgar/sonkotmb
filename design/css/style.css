@@ -313,3 +313,18 @@ padding: 0;}
 .resource-center tr td:first-child {
     width: 25%;
 }
+
+.soc-adaptation {
+    width: 90%;
+}
+
+.soc-adaptation td {
+    text-align: center;
+    font-family: 'headers';
+    color: #0948ac;
+    font-size: 20px;
+}
+
+.soc-adaptation tr td:first-child {
+    width: 400px;
+}
