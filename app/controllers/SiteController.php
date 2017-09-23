@@ -201,7 +201,7 @@ class SiteController extends Controller
             
             return $this->render('newsItem', [
                 'item' => $item,
-                'showReg' => $item->category_id == 7 ? true : false,
+                'showReg' => $item->allow ? true : false,
                 'showDate' => $item->category_id == 5 ? true : false
             ]);
         }
